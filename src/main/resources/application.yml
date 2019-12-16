@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: faster-cms
+  profiles:
+    include:
+      - web
+      - mybatis
+  freemarker:
+    settings:
+      classic_compatible: true
+      number_format: 0.##
+    suffix: ""
+app:
+  group: faster-cms
