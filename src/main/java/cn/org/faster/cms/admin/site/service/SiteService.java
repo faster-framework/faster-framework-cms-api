@@ -1,9 +1,7 @@
 package cn.org.faster.cms.admin.site.service;
 
-import cn.org.faster.cms.admin.site.strategy.BaseStrategy;
-import cn.org.faster.cms.admin.site.strategy.CategoryStrategy;
+import cn.org.faster.cms.admin.site.strategy.SectionStrategy;
 import cn.org.faster.cms.admin.site.strategy.IndexStrategy;
-import cn.org.faster.framework.web.context.model.SpringAppContextFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +18,7 @@ public class SiteService {
     @Autowired
     private IndexStrategy indexStrategy;
     @Autowired
-    private CategoryStrategy categoryStrategy;
+    private SectionStrategy sectionStrategy;
 
 
     /**
@@ -29,8 +27,8 @@ public class SiteService {
     public ResponseEntity generate() {
         //首页
         indexStrategy.start();
-        //分类页，生成分类时，生成文章
-        categoryStrategy.start();
+        //栏目页，生成栏目时，生成文章
+        sectionStrategy.start();
         return new ResponseEntity(HttpStatus.OK);
     }
 }

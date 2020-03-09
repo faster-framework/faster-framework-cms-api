@@ -35,7 +35,7 @@ public class ArticleTest extends BaseTest{
         mockHttpServletRequestBuilder.param("title","");
         mockHttpServletRequestBuilder.param("description","");
         mockHttpServletRequestBuilder.param("img","");
-        mockHttpServletRequestBuilder.param("categoryId","");
+        mockHttpServletRequestBuilder.param("sectionId","");
         mockHttpServletRequestBuilder.param("publishStatus","");
         mockHttpServletRequestBuilder.param("publishDate","");
         mockHttpServletRequestBuilder.param("showStatus","");
@@ -67,7 +67,7 @@ public class ArticleTest extends BaseTest{
         mockHttpServletRequestBuilder.param("title","");
         mockHttpServletRequestBuilder.param("description","");
         mockHttpServletRequestBuilder.param("img","");
-        mockHttpServletRequestBuilder.param("categoryId","");
+        mockHttpServletRequestBuilder.param("sectionId","");
         mockHttpServletRequestBuilder.param("publishStatus","");
         mockHttpServletRequestBuilder.param("publishDate","");
         mockHttpServletRequestBuilder.param("showStatus","");
@@ -91,7 +91,7 @@ public class ArticleTest extends BaseTest{
         request.setTitle(null);
         request.setDescription(null);
         request.setImg(null);
-        request.setCategoryId(null);
+        request.setSectionId(null);
         request.setPublishStatus(null);
         request.setPublishDate(null);
         request.setCreateBy(null);
@@ -114,7 +114,7 @@ public class ArticleTest extends BaseTest{
         request.setTitle(null);
         request.setDescription(null);
         request.setImg(null);
-        request.setCategoryId(null);
+        request.setSectionId(null);
         request.setPublishStatus(null);
         request.setPublishDate(null);
         request.setCreateBy(null);

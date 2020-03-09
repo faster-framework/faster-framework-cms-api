@@ -1,25 +1,4 @@
-/*
- Navicat MySQL Data Transfer
 
- Source Server         : 外网测试服务器
- Source Server Type    : MySQL
- Source Server Version : 50724
- Source Host           : 139.199.23.31:3306
- Source Schema         : faster-cms
-
- Target Server Type    : MySQL
- Target Server Version : 50724
- File Encoding         : 65001
-
- Date: 16/12/2019 15:46:48
-*/
-
-SET NAMES utf8mb4;
-SET FOREIGN_KEY_CHECKS = 0;
-
--- ----------------------------
--- Table structure for sys_dict
--- ----------------------------
 DROP TABLE IF EXISTS `sys_dict`;
 CREATE TABLE `sys_dict` (
   `id` bigint(20) NOT NULL,
@@ -39,22 +18,16 @@ CREATE TABLE `sys_dict` (
   KEY `idx_name` (`name`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='字典表';
 
--- ----------------------------
--- Records of sys_dict
--- ----------------------------
-BEGIN;
-INSERT INTO `sys_dict` VALUES (232859096359895040, '111', '111', '111', 1, 0, 0, '2019-12-02 11:51:53', '2019-12-02 11:51:53', 0, '111', 1);
-INSERT INTO `sys_dict` VALUES (232863405952729088, 'name', 'type', '1', 1, 0, 0, '2019-12-02 12:09:00', '2019-12-02 12:09:00', 0, '1', 1);
-INSERT INTO `sys_dict` VALUES (232863688996945920, '121212', 'type', '12', 1, 0, 0, '2019-12-02 12:10:08', '2019-12-02 12:10:08', 0, NULL, 1);
-INSERT INTO `sys_dict` VALUES (232886200787009536, '顶部导航', 'category:position', 'top-nav', 1, 0, 0, '2019-12-02 13:39:35', '2019-12-05 10:16:39', 11, NULL, 0);
-INSERT INTO `sys_dict` VALUES (232886248065204224, '底部导航', 'category:position', 'footer-nav', 1, 0, 0, '2019-12-02 13:39:46', '2019-12-02 13:39:46', 0, NULL, 0);
-INSERT INTO `sys_dict` VALUES (232886374452166656, '顶部菜单', 'category:position', 'top-menu', 1, 0, 0, '2019-12-02 13:40:16', '2019-12-02 13:40:16', 0, NULL, 0);
-INSERT INTO `sys_dict` VALUES (232886452973731840, '底部菜单', 'category:position', 'footer-menu', 1, 0, 0, '2019-12-02 13:40:35', '2019-12-02 13:40:35', 0, NULL, 0);
-INSERT INTO `sys_dict` VALUES (232886532162191360, '列表', 'category:reqType', 'list', 1, 0, 0, '2019-12-02 13:40:54', '2019-12-02 13:40:54', 0, NULL, 0);
-INSERT INTO `sys_dict` VALUES (232886578974818304, '链接', 'category:reqType', 'url', 1, 0, 0, '2019-12-02 13:41:05', '2019-12-02 13:41:05', 0, NULL, 0);
-INSERT INTO `sys_dict` VALUES (232886630912884736, '富文本', 'category:reqType', 'editor', 1, 0, 0, '2019-12-02 13:41:17', '2019-12-02 13:41:17', 0, NULL, 0);
-INSERT INTO `sys_dict` VALUES (232886854553174016, '自定义模板', 'category:reqType', 'template', 1, 0, 0, '2019-12-02 13:42:11', '2019-12-02 13:42:11', 0, NULL, 0);
-INSERT INTO `sys_dict` VALUES (232886894545862656, '无跳转', 'category:reqType', 'none', 1, 0, 0, '2019-12-02 13:42:20', '2019-12-02 13:42:20', 0, NULL, 0);
+
+INSERT INTO `sys_dict` VALUES (232886200787009536, '顶部导航', 'section:position', 'top-nav', 1, 0, 0, '2019-12-02 13:39:35', '2019-12-05 10:16:39', 11, NULL, 0);
+INSERT INTO `sys_dict` VALUES (232886248065204224, '底部导航', 'section:position', 'footer-nav', 1, 0, 0, '2019-12-02 13:39:46', '2019-12-02 13:39:46', 0, NULL, 0);
+INSERT INTO `sys_dict` VALUES (232886374452166656, '顶部菜单', 'section:position', 'top-menu', 1, 0, 0, '2019-12-02 13:40:16', '2019-12-02 13:40:16', 0, NULL, 0);
+INSERT INTO `sys_dict` VALUES (232886452973731840, '底部菜单', 'section:position', 'footer-menu', 1, 0, 0, '2019-12-02 13:40:35', '2019-12-02 13:40:35', 0, NULL, 0);
+INSERT INTO `sys_dict` VALUES (232886532162191360, '列表', 'section:reqType', 'list', 1, 0, 0, '2019-12-02 13:40:54', '2019-12-02 13:40:54', 0, NULL, 0);
+INSERT INTO `sys_dict` VALUES (232886578974818304, '链接', 'section:reqType', 'url', 1, 0, 0, '2019-12-02 13:41:05', '2019-12-02 13:41:05', 0, NULL, 0);
+INSERT INTO `sys_dict` VALUES (232886630912884736, '富文本', 'section:reqType', 'editor', 1, 0, 0, '2019-12-02 13:41:17', '2019-12-02 13:41:17', 0, NULL, 0);
+INSERT INTO `sys_dict` VALUES (232886854553174016, '自定义模板', 'section:reqType', 'template', 1, 0, 0, '2019-12-02 13:42:11', '2019-12-02 13:42:11', 0, NULL, 0);
+INSERT INTO `sys_dict` VALUES (232886894545862656, '无跳转', 'section:reqType', 'none', 1, 0, 0, '2019-12-02 13:42:20', '2019-12-02 13:42:20', 0, NULL, 0);
 INSERT INTO `sys_dict` VALUES (233283241098870784, '微信', 'contact:weixin', '18764050615', 1, 0, 0, '2019-12-03 15:57:17', '2019-12-03 15:57:34', 0, NULL, 0);
 INSERT INTO `sys_dict` VALUES (233283281246748672, 'qq', 'contact:qq', '515445681', 1, 0, 0, '2019-12-03 15:57:26', '2019-12-03 16:00:39', 0, NULL, 0);
 INSERT INTO `sys_dict` VALUES (233284163078193152, '微博', 'contact:weibo', '没有', 1, 0, 0, '2019-12-03 16:00:56', '2019-12-03 16:00:56', 0, NULL, 0);
@@ -62,9 +35,8 @@ INSERT INTO `sys_dict` VALUES (233284256309182464, '公司地址', 'contact:addr
 INSERT INTO `sys_dict` VALUES (233284401843142656, '邮箱', 'contact:email', '515445681@qq.com', 1, 0, 0, '2019-12-03 16:01:53', '2019-12-03 16:01:53', 0, NULL, 0);
 INSERT INTO `sys_dict` VALUES (233284483049062400, '电话', 'contact:phone', '18764050615', 1, 0, 0, '2019-12-03 16:02:13', '2019-12-03 16:02:13', 0, NULL, 0);
 INSERT INTO `sys_dict` VALUES (233284647507722240, '版权信息', 'copyright', '©济南小龟信息科技有限公司', 1, 0, 0, '2019-12-03 16:02:52', '2019-12-03 16:02:52', 0, NULL, 0);
-INSERT INTO `sys_dict` VALUES (233658463597625344, '首页轮播图', 'category:position', 'banner', 1, 0, 0, '2019-12-04 16:48:17', '2019-12-05 15:07:36', 0, NULL, 0);
-INSERT INTO `sys_dict` VALUES (233661863877935104, '其他', 'category:position', 'none', 1, 0, 0, '2019-12-04 17:01:47', '2019-12-05 15:07:46', 0, NULL, 0);
-COMMIT;
+INSERT INTO `sys_dict` VALUES (233658463597625344, '首页轮播图', 'section:position', 'banner', 1, 0, 0, '2019-12-04 16:48:17', '2019-12-05 15:07:36', 0, NULL, 0);
+INSERT INTO `sys_dict` VALUES (233661863877935104, '其他', 'section:position', 'none', 1, 0, 0, '2019-12-04 17:01:47', '2019-12-05 15:07:46', 0, NULL, 0);
 
 -- ----------------------------
 -- Table structure for sys_permission
@@ -127,13 +99,13 @@ INSERT INTO `sys_permission` VALUES (231799454108221440, '文章编辑', 'articl
 INSERT INTO `sys_permission` VALUES (231799454108221441, '文章列表', 'article:list', 231799454074667008, '[0],[231799454074667008]', 0, 0, '2019-11-29 13:41:14', '2019-11-29 13:41:14', 0, NULL, 0);
 INSERT INTO `sys_permission` VALUES (231799454108221442, '文章删除', 'article:delete', 231799454074667008, '[0],[231799454074667008]', 0, 0, '2019-11-29 13:41:14', '2019-11-29 13:41:14', 0, NULL, 0);
 INSERT INTO `sys_permission` VALUES (231799454108221443, '文章详情', 'article:info', 231799454074667008, '[0],[231799454074667008]', 0, 0, '2019-11-29 13:41:14', '2019-11-29 13:41:14', 0, NULL, 0);
-INSERT INTO `sys_permission` VALUES (231799454108221444, '分类管理', 'category:manage', 0, '[0]', 0, 0, '2019-11-29 13:41:14', '2019-11-29 13:41:14', 0, NULL, 0);
-INSERT INTO `sys_permission` VALUES (231799454108221445, '分类添加', 'category:add', 231799454108221444, '[0],[231799454108221444]', 0, 0, '2019-11-29 13:41:14', '2019-11-29 13:41:14', 0, NULL, 0);
-INSERT INTO `sys_permission` VALUES (231799454108221446, '分类编辑', 'category:modify', 231799454108221444, '[0],[231799454108221444]', 0, 0, '2019-11-29 13:41:14', '2019-11-29 13:41:14', 0, NULL, 0);
-INSERT INTO `sys_permission` VALUES (231799454112415744, '分类列表', 'category:list', 231799454108221444, '[0],[231799454108221444]', 0, 0, '2019-11-29 13:41:14', '2019-11-29 13:41:14', 0, NULL, 0);
-INSERT INTO `sys_permission` VALUES (231799454112415745, '分类删除', 'category:delete', 231799454108221444, '[0],[231799454108221444]', 0, 0, '2019-11-29 13:41:14', '2019-11-29 13:41:14', 0, NULL, 0);
-INSERT INTO `sys_permission` VALUES (231799454112415746, '分类详情', 'category:info', 231799454108221444, '[0],[231799454108221444]', 0, 0, '2019-11-29 13:41:14', '2019-11-29 13:41:14', 0, NULL, 0);
-INSERT INTO `sys_permission` VALUES (232884423559741440, '分类树', 'category:tree', 231799454108221444, '[0],[231799454108221444]', 0, 0, '2019-12-02 13:32:31', '2019-12-02 13:32:31', 0, NULL, 0);
+INSERT INTO `sys_permission` VALUES (231799454108221444, '栏目管理', 'section:manage', 0, '[0]', 0, 0, '2019-11-29 13:41:14', '2019-11-29 13:41:14', 0, NULL, 0);
+INSERT INTO `sys_permission` VALUES (231799454108221445, '栏目添加', 'section:add', 231799454108221444, '[0],[231799454108221444]', 0, 0, '2019-11-29 13:41:14', '2019-11-29 13:41:14', 0, NULL, 0);
+INSERT INTO `sys_permission` VALUES (231799454108221446, '栏目编辑', 'section:modify', 231799454108221444, '[0],[231799454108221444]', 0, 0, '2019-11-29 13:41:14', '2019-11-29 13:41:14', 0, NULL, 0);
+INSERT INTO `sys_permission` VALUES (231799454112415744, '栏目列表', 'section:list', 231799454108221444, '[0],[231799454108221444]', 0, 0, '2019-11-29 13:41:14', '2019-11-29 13:41:14', 0, NULL, 0);
+INSERT INTO `sys_permission` VALUES (231799454112415745, '栏目删除', 'section:delete', 231799454108221444, '[0],[231799454108221444]', 0, 0, '2019-11-29 13:41:14', '2019-11-29 13:41:14', 0, NULL, 0);
+INSERT INTO `sys_permission` VALUES (231799454112415746, '栏目详情', 'section:info', 231799454108221444, '[0],[231799454108221444]', 0, 0, '2019-11-29 13:41:14', '2019-11-29 13:41:14', 0, NULL, 0);
+INSERT INTO `sys_permission` VALUES (232884423559741440, '栏目树', 'section:tree', 231799454108221444, '[0],[231799454108221444]', 0, 0, '2019-12-02 13:32:31', '2019-12-02 13:32:31', 0, NULL, 0);
 INSERT INTO `sys_permission` VALUES (237934442906124288, '站点管理', 'site:manage', 0, '[0]', 0, 0, '2019-12-16 11:59:30', '2019-12-16 11:59:30', 0, NULL, 0);
 COMMIT;
 
@@ -157,9 +129,7 @@ CREATE TABLE `sys_role` (
 -- ----------------------------
 -- Records of sys_role
 -- ----------------------------
-BEGIN;
 INSERT INTO `sys_role` VALUES (0, '超级管理员', NULL, NULL, '2018-05-29 17:35:47', '2018-05-29 17:35:47', 0, NULL, 0);
-COMMIT;
 
 -- ----------------------------
 -- Table structure for sys_role_permission
@@ -202,9 +172,7 @@ CREATE TABLE `sys_user` (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-BEGIN;
 INSERT INTO `sys_user` VALUES (0, 'admin', '21232f297a57a5a743894a0e4a801fc3', '超级管理员', NULL, NULL, '2018-05-29 17:35:46', '2018-05-29 17:35:46', 0, NULL, 0);
-COMMIT;
 
 -- ----------------------------
 -- Table structure for sys_user_role
@@ -227,105 +195,14 @@ CREATE TABLE `sys_user_role` (
 -- ----------------------------
 -- Records of sys_user_role
 -- ----------------------------
-BEGIN;
 INSERT INTO `sys_user_role` VALUES (0, 0, 0, NULL, NULL, '2018-06-11 17:47:05', '2018-06-11 17:47:08', 0, NULL, 0);
-COMMIT;
+
 
 -- ----------------------------
--- Table structure for tb_article
+-- Table structure for tb_section
 -- ----------------------------
-DROP TABLE IF EXISTS `tb_article`;
-CREATE TABLE `tb_article` (
-  `id` bigint(20) NOT NULL COMMENT '主键id',
-  `title` varchar(256) COLLATE utf8mb4_bin NOT NULL COMMENT '标题',
-  `description` varchar(256) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '描述',
-  `img` varchar(1024) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '封面图片',
-  `category_id` bigint(20) NOT NULL COMMENT '菜单id',
-  `publish_status` tinyint(4) NOT NULL COMMENT '发布状态（0. 未发布 1.已发布）',
-  `publish_date` datetime DEFAULT NULL COMMENT '发布时间',
-  `content` longtext COLLATE utf8mb4_bin NOT NULL COMMENT '内容（富文本）',
-  `create_by` bigint(20) DEFAULT NULL COMMENT '创建人',
-  `update_by` bigint(20) DEFAULT NULL COMMENT '最后更新人',
-  `create_date` datetime NOT NULL COMMENT '创建时间',
-  `update_date` datetime NOT NULL COMMENT '最后更新时间',
-  `sort` int(11) NOT NULL DEFAULT '0' COMMENT '排序',
-  `remark` varchar(1024) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '备注',
-  `deleted` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否删除（0.,否 1.是）',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='文章';
-
--- ----------------------------
--- Records of tb_article
--- ----------------------------
-BEGIN;
-INSERT INTO `tb_article` VALUES (1, '我们的案例1', NULL, 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, '2019-12-05 15:26:49', '<p>这是案例的内容</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 15:26:49', 0, NULL, 0);
-INSERT INTO `tb_article` VALUES (2, '我们的案例1', NULL, 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, '2019-12-05 15:26:52', '<p>这是案例的内容</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 15:26:52', 0, NULL, 0);
-INSERT INTO `tb_article` VALUES (3, '我们的案例1', NULL, 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, '2019-12-05 15:27:07', '<p>这是案例的内容</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 15:27:07', 0, NULL, 0);
-INSERT INTO `tb_article` VALUES (4, '我们的案例1', NULL, 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, NULL, '<p>这是案例的内容</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 14:30:30', 0, NULL, 0);
-INSERT INTO `tb_article` VALUES (5, '我们的案例1', NULL, 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, NULL, '<p>这是案例的内容</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 14:30:30', 0, NULL, 0);
-INSERT INTO `tb_article` VALUES (6, '我们的案例1', NULL, 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, NULL, '<p>这是案例的内容</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 14:30:30', 0, NULL, 0);
-INSERT INTO `tb_article` VALUES (7, '我们的案例1', NULL, 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, NULL, '<p>这是案例的内容</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 14:30:30', 0, NULL, 0);
-INSERT INTO `tb_article` VALUES (8, '我们的案例1', NULL, 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, NULL, '<p>这是案例的内容</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 14:30:30', 0, NULL, 0);
-INSERT INTO `tb_article` VALUES (9, '我们的案例1', NULL, 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, NULL, '<p>这是案例的内容</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 14:30:30', 0, NULL, 0);
-INSERT INTO `tb_article` VALUES (10, '我们的案例1', NULL, 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, NULL, '<p>这是案例的内容</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 14:30:30', 0, NULL, 0);
-INSERT INTO `tb_article` VALUES (11, '我们的案例1', NULL, 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, NULL, '<p>这是案例的内容</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 14:30:30', 0, NULL, 0);
-INSERT INTO `tb_article` VALUES (12, '我们的案例1', NULL, 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, NULL, '<p>这是案例的内容</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 14:30:30', 0, NULL, 0);
-INSERT INTO `tb_article` VALUES (13, '我们的案例1', NULL, 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, NULL, '<p>这是案例的内容</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 14:30:30', 0, NULL, 0);
-INSERT INTO `tb_article` VALUES (14, '我们的案例1', NULL, 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, NULL, '<p>这是案例的内容</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 14:30:30', 0, NULL, 0);
-INSERT INTO `tb_article` VALUES (15, '我们的案例1', NULL, 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, NULL, '<p>这是案例的内容</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 14:30:30', 0, NULL, 0);
-INSERT INTO `tb_article` VALUES (16, '我们的案例1', NULL, 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, NULL, '<p>这是案例的内容</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 14:30:30', 0, NULL, 0);
-INSERT INTO `tb_article` VALUES (17, '我们的案例1', NULL, 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, NULL, '<p>这是案例的内容</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 14:30:30', 0, NULL, 0);
-INSERT INTO `tb_article` VALUES (18, '我们的案例1', NULL, 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, NULL, '<p>这是案例的内容</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 14:30:30', 0, NULL, 0);
-INSERT INTO `tb_article` VALUES (19, '我们的案例1', NULL, 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, NULL, '<p>这是案例的内容</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 14:30:30', 0, NULL, 0);
-INSERT INTO `tb_article` VALUES (20, '我们的案例1', NULL, 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, NULL, '<p>这是案例的内容</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 14:30:30', 0, NULL, 0);
-INSERT INTO `tb_article` VALUES (21, '我们的案例1', NULL, 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, NULL, '<p>这是案例的内容</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 14:30:30', 0, NULL, 0);
-INSERT INTO `tb_article` VALUES (22, '我们的案例1', NULL, 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, NULL, '<p>这是案例的内容</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 14:30:30', 0, NULL, 0);
-INSERT INTO `tb_article` VALUES (23, '我们的案例1', NULL, 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, NULL, '<p>这是案例的内容</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 14:30:30', 0, NULL, 0);
-INSERT INTO `tb_article` VALUES (24, '我们的案例1', NULL, 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, NULL, '<p>这是案例的内容</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 14:30:30', 0, NULL, 0);
-INSERT INTO `tb_article` VALUES (25, '我们的案例1', NULL, 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, NULL, '<p>这是案例的内容</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 14:30:30', 0, NULL, 0);
-INSERT INTO `tb_article` VALUES (26, '我们的案例1', NULL, 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, NULL, '<p>这是案例的内容</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 14:30:30', 0, NULL, 0);
-INSERT INTO `tb_article` VALUES (27, '我们的案例1', NULL, 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, NULL, '<p>这是案例的内容</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 14:30:30', 0, NULL, 0);
-INSERT INTO `tb_article` VALUES (28, '我们的案例1', NULL, 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, NULL, '<p>这是案例的内容</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 14:30:30', 0, NULL, 0);
-INSERT INTO `tb_article` VALUES (29, '我们的案例1', NULL, 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, NULL, '<p>这是案例的内容</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 14:30:30', 0, NULL, 0);
-INSERT INTO `tb_article` VALUES (30, '我们的案例1', NULL, 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, NULL, '<p>这是案例的内容</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 14:30:30', 0, NULL, 0);
-INSERT INTO `tb_article` VALUES (31, '我们的案例1', NULL, 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, NULL, '<p>这是案例的内容</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 14:30:30', 0, NULL, 0);
-INSERT INTO `tb_article` VALUES (32, '我们的案例1', NULL, 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, NULL, '<p>这是案例的内容</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 14:30:30', 0, NULL, 0);
-INSERT INTO `tb_article` VALUES (33, '我们的案例1', NULL, 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, NULL, '<p>这是案例的内容</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 14:30:30', 0, NULL, 0);
-INSERT INTO `tb_article` VALUES (34, '我们的案例1', NULL, 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, NULL, '<p>这是案例的内容</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 14:30:30', 0, NULL, 0);
-INSERT INTO `tb_article` VALUES (35, '我们的案例1', NULL, 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, NULL, '<p>这是案例的内容</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 14:30:30', 0, NULL, 0);
-INSERT INTO `tb_article` VALUES (36, '我们的案例1', NULL, 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, NULL, '<p>这是案例的内容</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 14:30:30', 0, NULL, 0);
-INSERT INTO `tb_article` VALUES (37, '我们的案例1', NULL, 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, NULL, '<p>这是案例的内容</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 14:30:30', 0, NULL, 0);
-INSERT INTO `tb_article` VALUES (38, '我们的案例1', NULL, 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, NULL, '<p>这是案例的内容</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 14:30:30', 0, NULL, 0);
-INSERT INTO `tb_article` VALUES (39, '我们的案例1', NULL, 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, NULL, '<p>这是案例的内容</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 14:30:30', 0, NULL, 0);
-INSERT INTO `tb_article` VALUES (40, '我们的案例1', NULL, 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, NULL, '<p>这是案例的内容</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 14:30:30', 0, NULL, 0);
-INSERT INTO `tb_article` VALUES (42, '我们的案例1', NULL, 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, NULL, '<p>这是案例的内容</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 14:30:30', 0, NULL, 0);
-INSERT INTO `tb_article` VALUES (43, '我们的案例1', NULL, 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, NULL, '<p>这是案例的内容</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 14:30:30', 0, NULL, 0);
-INSERT INTO `tb_article` VALUES (44, '我们的案例1', NULL, 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, NULL, '<p>这是案例的内容</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 14:30:30', 0, NULL, 0);
-INSERT INTO `tb_article` VALUES (45, '我们的案例1', NULL, 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, NULL, '<p>这是案例的内容</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 14:30:30', 0, NULL, 0);
-INSERT INTO `tb_article` VALUES (46, '我们的案例1', NULL, 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, NULL, '<p>这是案例的内容</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 14:30:30', 0, NULL, 0);
-INSERT INTO `tb_article` VALUES (47, '我们的案例1', NULL, 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, NULL, '<p>这是案例的内容</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 14:30:30', 0, NULL, 0);
-INSERT INTO `tb_article` VALUES (48, '我们的案例1', NULL, 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, NULL, '<p>这是案例的内容</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 14:30:30', 0, NULL, 0);
-INSERT INTO `tb_article` VALUES (49, '我们的案例1', NULL, 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, NULL, '<p>这是案例的内容</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 14:30:30', 0, NULL, 0);
-INSERT INTO `tb_article` VALUES (50, '我们的案例1', NULL, 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, NULL, '<p>这是案例的内容</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 14:30:30', 0, NULL, 0);
-INSERT INTO `tb_article` VALUES (51, '我们的案例1', NULL, 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, NULL, '<p>这是案例的内容</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 14:30:30', 0, NULL, 0);
-INSERT INTO `tb_article` VALUES (52, '我们的案例1', NULL, 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, NULL, '<p>这是案例的内容</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 14:30:30', 0, NULL, 0);
-INSERT INTO `tb_article` VALUES (53, '我们的案例1', NULL, 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, NULL, '<p>这是案例的内容</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 14:30:30', 0, NULL, 0);
-INSERT INTO `tb_article` VALUES (54, '我们的案例1', NULL, 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, NULL, '<p>这是案例的内容</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 14:30:30', 0, NULL, 0);
-INSERT INTO `tb_article` VALUES (55, '我们的案例1', NULL, 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, NULL, '<p>这是案例的内容</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 14:30:30', 0, NULL, 0);
-INSERT INTO `tb_article` VALUES (56, '我们的案例1', NULL, 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, NULL, '<p>这是案例的内容</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 14:30:30', 0, NULL, 0);
-INSERT INTO `tb_article` VALUES (57, '我们的案例1', NULL, 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, NULL, '<p>这是案例的内容</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 14:30:30', 0, NULL, 0);
-INSERT INTO `tb_article` VALUES (58, '我们的案例1', NULL, 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, NULL, '<p>这是案例的内容</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 14:30:30', 0, NULL, 0);
-INSERT INTO `tb_article` VALUES (60, '我们的案例1', NULL, 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, NULL, '<p>这是案例的内容</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 14:30:30', 0, NULL, 0);
-INSERT INTO `tb_article` VALUES (61, '我们的案例1', NULL, 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, NULL, '<p>这是案例的内容</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 14:30:30', 0, NULL, 0);
-INSERT INTO `tb_article` VALUES (441, '我们的案例1', NULL, 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, NULL, '<p>这是案例的内容</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 14:30:30', 0, NULL, 0);
-INSERT INTO `tb_article` VALUES (233986180327145472, '我们的案例1', 'asassaasassa', 'http://127.0.0.1:8080/media/2019120514301317.png', 233995711752962048, 1, '2019-12-05 15:26:42', '<p>这是案例的内容asa</p>', 0, 0, '2019-12-05 14:30:30', '2019-12-05 15:34:21', 0, NULL, 0);
-COMMIT;
-
--- ----------------------------
--- Table structure for tb_category
--- ----------------------------
-DROP TABLE IF EXISTS `tb_category`;
-CREATE TABLE `tb_category` (
+DROP TABLE IF EXISTS `tb_section`;
+CREATE TABLE `tb_section` (
   `id` bigint(20) NOT NULL COMMENT '主键id',
   `name` varchar(36) COLLATE utf8mb4_bin NOT NULL COMMENT '名称',
   `code` varchar(32) COLLATE utf8mb4_bin NOT NULL COMMENT '编码',
@@ -348,25 +225,30 @@ CREATE TABLE `tb_category` (
   `remark` varchar(1024) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '备注',
   `deleted` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否删除（0.,否 1.是）',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='分类';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='栏目';
+
 
 -- ----------------------------
--- Records of tb_category
+-- Table structure for tb_article
 -- ----------------------------
-BEGIN;
-INSERT INTO `tb_category` VALUES (233654130126618624, '首页', 'home', 'top-nav', 'Home', NULL, 0, '[0]', 'list', NULL, 1, 1, 'article/list.ftl', 'article/info.ftl', 0, 0, '2019-12-04 16:31:04', '2019-12-13 13:43:28', 1, NULL, 0);
-INSERT INTO `tb_category` VALUES (233654293381513216, '关于我们', 'about', 'top-nav', 'About', NULL, 0, '[0]', 'list', NULL, 1, 1, 'article/list.ftl', 'article/info.ftl', 0, 0, '2019-12-04 16:31:42', '2019-12-13 13:43:25', 2, NULL, 0);
-INSERT INTO `tb_category` VALUES (233654461384359936, '我们的服务', 'service', 'none', '巨擘文化发展公司，我们的业务', NULL, 0, '[0]', 'list', NULL, 1, 1, 'article/list.ftl', 'article/info.ftl', 0, 0, '2019-12-04 16:32:22', '2019-12-13 13:43:14', 12, NULL, 0);
-INSERT INTO `tb_category` VALUES (233654630062489600, '案例展示', 'demos', 'top-nav', 'Case', NULL, 0, '[0]', 'list', NULL, 1, 1, 'article/list.ftl', 'article/info.ftl', 0, 0, '2019-12-04 16:33:03', '2019-12-13 13:43:18', 4, NULL, 0);
-INSERT INTO `tb_category` VALUES (233655006945869824, '联系我们', 'contact', 'top-nav', 'Contact', NULL, 0, '[0]', 'list', NULL, 1, 1, 'article/list.ftl', 'article/info.ftl', 0, 0, '2019-12-04 16:34:33', '2019-12-13 13:43:01', 5, NULL, 0);
-INSERT INTO `tb_category` VALUES (233658714995818496, 'banner', 'banner', 'banner', NULL, NULL, 0, '[0]', 'list', NULL, 1, 1, 'article/list.ftl', 'article/info.ftl', 0, 0, '2019-12-04 16:49:17', '2019-12-13 13:43:32', 0, NULL, 0);
-INSERT INTO `tb_category` VALUES (233660090211631104, 'banner1', 'banner1', 'banner', NULL, 'http://127.0.0.1:8080/media/2019120416530879.jpg', 233658714995818496, '[0],[233658714995818496]', 'editor', NULL, 1, 1, NULL, 'article/info.ftl', 0, 0, '2019-12-04 16:54:45', '2019-12-04 16:55:30', 0, NULL, 0);
-INSERT INTO `tb_category` VALUES (233660254166974464, 'banner2', 'banner2', 'banner', NULL, 'http://127.0.0.1:8080/media/2019120416552196.jpg', 233658714995818496, '[0],[233658714995818496]', 'editor', NULL, 1, 1, NULL, 'article/info.ftl', 0, 0, '2019-12-04 16:55:24', '2019-12-04 16:55:24', 0, NULL, 0);
-INSERT INTO `tb_category` VALUES (233662126974042112, '文化项目运行', 'service1', 'none', NULL, 'http://127.0.0.1:8080/media/2019120417024209.png', 233654461384359936, '[0],[233654461384359936]', 'none', NULL, 1, 1, NULL, 'article/info.ftl', 0, 0, '2019-12-04 17:02:50', '2019-12-04 17:02:50', 0, NULL, 0);
-INSERT INTO `tb_category` VALUES (233664094098423808, '影视节目制作', 'service2', 'none', NULL, 'http://127.0.0.1:8080/media/2019120417103793.png', 233654461384359936, '[0],[233654461384359936]', 'none', NULL, 1, 1, NULL, 'article/info.ftl', 0, 0, '2019-12-04 17:10:39', '2019-12-04 17:10:39', 0, NULL, 0);
-INSERT INTO `tb_category` VALUES (233664481454981120, '服务内容', 'service-nav', 'top-nav', 'Service', NULL, 0, '[0]', 'url', NULL, 1, 1, NULL, 'article/info.ftl', 0, 0, '2019-12-04 17:12:11', '2019-12-04 17:12:47', 3, NULL, 0);
-INSERT INTO `tb_category` VALUES (233995711752962048, '案例1', 'anli1', 'none', NULL, NULL, 233654630062489600, '[0],[233654630062489600]', 'list', NULL, 1, 1, 'article/list.ftl', 'article/info.ftl', 0, 0, '2019-12-05 15:08:23', '2019-12-05 15:08:32', 0, NULL, 0);
-INSERT INTO `tb_category` VALUES (233996003844292608, '案例2', 'anli2', 'none', 'wwww', NULL, 233654630062489600, '[0],[233654630062489600]', 'list', NULL, 1, 1, 'article/list.ftl', 'article/info.ftl', 0, 0, '2019-12-05 15:09:33', '2019-12-05 15:09:33', 0, NULL, 0);
-COMMIT;
+DROP TABLE IF EXISTS `tb_article`;
+CREATE TABLE `tb_article` (
+  `id` bigint(20) NOT NULL COMMENT '主键id',
+  `title` varchar(256) COLLATE utf8mb4_bin NOT NULL COMMENT '标题',
+  `description` varchar(256) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '描述',
+  `img` varchar(1024) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '封面图片',
+  `section_id` bigint(20) NOT NULL COMMENT '栏目id',
+  `publish_status` tinyint(4) NOT NULL COMMENT '发布状态（0. 未发布 1.已发布）',
+  `publish_date` datetime DEFAULT NULL COMMENT '发布时间',
+  `content` longtext COLLATE utf8mb4_bin NOT NULL COMMENT '内容（富文本）',
+  `create_by` bigint(20) DEFAULT NULL COMMENT '创建人',
+  `update_by` bigint(20) DEFAULT NULL COMMENT '最后更新人',
+  `create_date` datetime NOT NULL COMMENT '创建时间',
+  `update_date` datetime NOT NULL COMMENT '最后更新时间',
+  `sort` int(11) NOT NULL DEFAULT '0' COMMENT '排序',
+  `remark` varchar(1024) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '备注',
+  `deleted` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否删除（0.否 1.是）',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='文章';
 
-SET FOREIGN_KEY_CHECKS = 1;
+

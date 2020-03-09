@@ -2,8 +2,8 @@ package cn.org.faster.cms.view.article;
 
 import cn.org.faster.cms.api.article.entity.Article;
 import cn.org.faster.cms.api.article.service.ArticleService;
-import cn.org.faster.cms.api.category.entity.Category;
-import cn.org.faster.cms.api.category.service.CategoryService;
+import cn.org.faster.cms.api.section.entity.Section;
+import cn.org.faster.cms.api.section.service.SectionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,7 +24,7 @@ public class ArticleController {
     @Autowired
     private ArticleService articleService;
     @Autowired
-    private CategoryService categoryService;
+    private SectionService sectionService;
 
     /**
      * 详情页
@@ -34,10 +34,10 @@ public class ArticleController {
     @GetMapping("/{id}")
     public String info(@PathVariable String id, Model model) {
         Article article = articleService.getById(id);
-        Category category = categoryService.getById(article.getCategoryId());
+        Section section = sectionService.getById(article.getSectionId());
         Map<String, Object> params = new HashMap<>();
         params.put("id", id);
         model.addAttribute("page", params);
-        return category.getContentTemplatePath();
+        return section.getContentTemplatePath();
     }
 }

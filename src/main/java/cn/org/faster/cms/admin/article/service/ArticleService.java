@@ -41,8 +41,8 @@ public class ArticleService extends ServiceImpl<ArticleMapper, Article> {
         if (!StringUtils.isEmpty(article.getImg())) {
             queryWrapper.eq(Article::getImg, article.getImg());
         }
-        if (article.getCategoryId() != null) {
-            queryWrapper.eq(Article::getCategoryId, article.getCategoryId());
+        if (article.getSectionId() != null) {
+            queryWrapper.eq(Article::getSectionId, article.getSectionId());
         }
         if (article.getPublishStatus() != null) {
             queryWrapper.eq(Article::getPublishStatus, article.getPublishStatus());
@@ -94,8 +94,8 @@ public class ArticleService extends ServiceImpl<ArticleMapper, Article> {
         if (!StringUtils.isEmpty(article.getImg())) {
             queryWrapper.eq(Article::getImg, article.getImg());
         }
-        if (article.getCategoryId() != null) {
-            queryWrapper.eq(Article::getCategoryId, article.getCategoryId());
+        if (article.getSectionId() != null) {
+            queryWrapper.eq(Article::getSectionId, article.getSectionId());
         }
         if (article.getPublishStatus() != null) {
             queryWrapper.eq(Article::getPublishStatus, article.getPublishStatus());
@@ -148,8 +148,8 @@ public class ArticleService extends ServiceImpl<ArticleMapper, Article> {
         if (!StringUtils.isEmpty(article.getImg())) {
             queryWrapper.eq(Article::getImg, article.getImg());
         }
-        if (article.getCategoryId() != null) {
-            queryWrapper.eq(Article::getCategoryId, article.getCategoryId());
+        if (article.getSectionId() != null) {
+            queryWrapper.eq(Article::getSectionId, article.getSectionId());
         }
         if (article.getPublishStatus() != null) {
             queryWrapper.eq(Article::getPublishStatus, article.getPublishStatus());

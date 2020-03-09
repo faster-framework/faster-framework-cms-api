@@ -25,9 +25,9 @@ public class ArticleAddRequest extends BaseEntity{
      */
     private String img;
     /**
-     * 分类id
+     * 栏目id
      */
-    private Long categoryId;
+    private Long sectionId;
     /**
      * 发布状态（0.未发布1.已发布）
      */

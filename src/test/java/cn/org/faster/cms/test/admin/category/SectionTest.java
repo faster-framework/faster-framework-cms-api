@@ -1,4 +1,4 @@
-package cn.org.faster.cms.test.api.v1.article;
+package cn.org.faster.cms.test.admin.section;
 
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.junit.Test;
@@ -6,14 +6,14 @@ import cn.org.faster.cms.test.BaseTest;
 import com.alibaba.fastjson.JSON;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
-import cn.org.faster.cms.api.article.model.request.ArticleAddRequest;
-import cn.org.faster.cms.api.article.model.request.ArticleUpdateRequest;
+import cn.org.faster.cms.admin.section.model.request.SectionAddRequest;
+import cn.org.faster.cms.admin.section.model.request.SectionUpdateRequest;
 
 /**
  * @author faster-builder
- * 文章 Test
+ * 栏目 Test
  */
-public class ArticleTest extends BaseTest{
+public class SectionTest extends BaseTest{
     /**
      * 生成的为local环境的token。
      * 通过jwtService.createToken创建。其中audience设为0L，expSecond不超时，base64Security使用ProjectProperties中的默认值，env为local。
@@ -28,17 +28,23 @@ public class ArticleTest extends BaseTest{
      */
     @Test
     public void list() throws Exception {
-        MockHttpServletRequestBuilder mockHttpServletRequestBuilder =  MockMvcRequestBuilders.get("/api/v1/article");
+        MockHttpServletRequestBuilder mockHttpServletRequestBuilder =  MockMvcRequestBuilders.get("/section");
         mockHttpServletRequestBuilder.param("pageSize","10");
         mockHttpServletRequestBuilder.param("pageNumber","1");
         mockHttpServletRequestBuilder.param("id","");
-        mockHttpServletRequestBuilder.param("title","");
+        mockHttpServletRequestBuilder.param("name","");
+        mockHttpServletRequestBuilder.param("code","");
+        mockHttpServletRequestBuilder.param("position","");
         mockHttpServletRequestBuilder.param("description","");
         mockHttpServletRequestBuilder.param("img","");
-        mockHttpServletRequestBuilder.param("sectionId","");
+        mockHttpServletRequestBuilder.param("parentId","");
+        mockHttpServletRequestBuilder.param("parentIds","");
+        mockHttpServletRequestBuilder.param("reqType","");
+        mockHttpServletRequestBuilder.param("reqLocation","");
         mockHttpServletRequestBuilder.param("publishStatus","");
-        mockHttpServletRequestBuilder.param("publishDate","");
         mockHttpServletRequestBuilder.param("showStatus","");
+        mockHttpServletRequestBuilder.param("templatePath","");
+        mockHttpServletRequestBuilder.param("contentTemplatePath","");
         mockHttpServletRequestBuilder.param("createBy","");
         mockHttpServletRequestBuilder.param("updateBy","");
         mockHttpServletRequestBuilder.param("createDate","");
@@ -54,7 +60,7 @@ public class ArticleTest extends BaseTest{
      */
     @Test
     public void queryById() throws Exception {
-        this.buildRequest(() -> MockMvcRequestBuilders.get("/api/v1/article/{id}", "")).andExpect(status().is2xxSuccessful());
+        this.buildRequest(() -> MockMvcRequestBuilders.get("/section/{id}", "")).andExpect(status().is2xxSuccessful());
     }
 
     /**
@@ -62,15 +68,21 @@ public class ArticleTest extends BaseTest{
      */
     @Test
     public void query() throws Exception {
-        MockHttpServletRequestBuilder mockHttpServletRequestBuilder =  MockMvcRequestBuilders.get("/api/v1/article/query");
+        MockHttpServletRequestBuilder mockHttpServletRequestBuilder =  MockMvcRequestBuilders.get("/section/query");
         mockHttpServletRequestBuilder.param("id","");
-        mockHttpServletRequestBuilder.param("title","");
+        mockHttpServletRequestBuilder.param("name","");
+        mockHttpServletRequestBuilder.param("code","");
+        mockHttpServletRequestBuilder.param("position","");
         mockHttpServletRequestBuilder.param("description","");
         mockHttpServletRequestBuilder.param("img","");
-        mockHttpServletRequestBuilder.param("sectionId","");
+        mockHttpServletRequestBuilder.param("parentId","");
+        mockHttpServletRequestBuilder.param("parentIds","");
+        mockHttpServletRequestBuilder.param("reqType","");
+        mockHttpServletRequestBuilder.param("reqLocation","");
         mockHttpServletRequestBuilder.param("publishStatus","");
-        mockHttpServletRequestBuilder.param("publishDate","");
         mockHttpServletRequestBuilder.param("showStatus","");
+        mockHttpServletRequestBuilder.param("templatePath","");
+        mockHttpServletRequestBuilder.param("contentTemplatePath","");
         mockHttpServletRequestBuilder.param("createBy","");
         mockHttpServletRequestBuilder.param("updateBy","");
         mockHttpServletRequestBuilder.param("createDate","");
@@ -86,14 +98,21 @@ public class ArticleTest extends BaseTest{
      */
     @Test
     public void add() throws Exception {
-        ArticleAddRequest request = new ArticleAddRequest();
+        SectionAddRequest request = new SectionAddRequest();
         request.setId(null);
-        request.setTitle(null);
+        request.setName(null);
+        request.setCode(null);
+        request.setPosition(null);
         request.setDescription(null);
         request.setImg(null);
-        request.setSectionId(null);
+        request.setParentId(null);
+        request.setParentIds(null);
+        request.setReqType(null);
+        request.setReqLocation(null);
         request.setPublishStatus(null);
-        request.setPublishDate(null);
+        request.setShowStatus(null);
+        request.setTemplatePath(null);
+        request.setContentTemplatePath(null);
         request.setCreateBy(null);
         request.setUpdateBy(null);
         request.setCreateDate(null);
@@ -101,7 +120,7 @@ public class ArticleTest extends BaseTest{
         request.setSort(null);
         request.setRemark(null);
         request.setDeleted(null);
-        this.buildRequest(() -> MockMvcRequestBuilders.post("/api/v1/article").content(JSON.toJSONString(request))).andExpect(status().is2xxSuccessful());
+        this.buildRequest(() -> MockMvcRequestBuilders.post("/section").content(JSON.toJSONString(request))).andExpect(status().is2xxSuccessful());
     }
 
     /**
@@ -109,14 +128,21 @@ public class ArticleTest extends BaseTest{
      */
     @Test
     public void update() throws Exception {
-        ArticleUpdateRequest request = new ArticleUpdateRequest();
+        SectionUpdateRequest request = new SectionUpdateRequest();
         request.setId(null);
-        request.setTitle(null);
+        request.setName(null);
+        request.setCode(null);
+        request.setPosition(null);
         request.setDescription(null);
         request.setImg(null);
-        request.setSectionId(null);
+        request.setParentId(null);
+        request.setParentIds(null);
+        request.setReqType(null);
+        request.setReqLocation(null);
         request.setPublishStatus(null);
-        request.setPublishDate(null);
+        request.setShowStatus(null);
+        request.setTemplatePath(null);
+        request.setContentTemplatePath(null);
         request.setCreateBy(null);
         request.setUpdateBy(null);
         request.setCreateDate(null);
@@ -124,7 +150,7 @@ public class ArticleTest extends BaseTest{
         request.setSort(null);
         request.setRemark(null);
         request.setDeleted(null);
-        this.buildRequest(()-> MockMvcRequestBuilders.put("/api/v1/article/{id}","").content(JSON.toJSONString(request))).andExpect(status().is2xxSuccessful());
+        this.buildRequest(()-> MockMvcRequestBuilders.put("/section/{id}","").content(JSON.toJSONString(request))).andExpect(status().is2xxSuccessful());
     }
 
     /**
@@ -132,7 +158,7 @@ public class ArticleTest extends BaseTest{
      */
     @Test
     public void delete() throws Exception {
-        this.buildRequest(()-> MockMvcRequestBuilders.delete("/api/v1/article/{id}","")).andExpect(status().is2xxSuccessful());
+        this.buildRequest(()-> MockMvcRequestBuilders.delete("/section/{id}","")).andExpect(status().is2xxSuccessful());
     }
 
 }
