@@ -1,17 +1,17 @@
 package cn.org.faster.cms.admin.section.service;
 
+import cn.org.faster.cms.admin.section.entity.Section;
+import cn.org.faster.cms.admin.section.mapper.SectionMapper;
 import cn.org.faster.framework.core.entity.TreeNode;
 import cn.org.faster.framework.core.utils.tree.TreeUtils;
 import cn.org.faster.framework.web.exception.model.BasicErrorCode;
-import org.springframework.util.StringUtils;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import cn.org.faster.cms.admin.section.mapper.SectionMapper;
-import cn.org.faster.cms.admin.section.entity.Section;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -34,14 +34,8 @@ public class SectionService extends ServiceImpl<SectionMapper, Section> {
     }
 
     /**
-     * @return 全部的栏目列表
-     */
-    public List<Section> list() {
-        return super.baseMapper.selectList(new LambdaQueryWrapper<Section>().orderByAsc(Section::getParentIds, Section::getSort));
-    }
-
-    /**
      * 根据条件查询详情
+     *
      * @param section 请求参数
      * @return 栏目详情
      */
@@ -113,14 +107,16 @@ public class SectionService extends ServiceImpl<SectionMapper, Section> {
         return super.getOne(queryWrapper);
     }
 
-     /**
+    /**
      * 根据主键id查询详情
+     *
      * @param id 栏目id
      * @return 栏目详情
      */
     public Section queryById(Long id) {
         return super.getById(id);
     }
+
     /**
      * @param section 填充parentIds
      * @return 如果parentId不存在，返回false
@@ -138,6 +134,7 @@ public class SectionService extends ServiceImpl<SectionMapper, Section> {
         }
         return true;
     }
+
     /**
      * 判断是否已经存在code
      *
@@ -149,10 +146,11 @@ public class SectionService extends ServiceImpl<SectionMapper, Section> {
     }
 
     /**
-    * 添加栏目
-    * @param section 实体
-    * @return ResponseEntity
-    */
+     * 添加栏目
+     *
+     * @param section 实体
+     * @return ResponseEntity
+     */
     public ResponseEntity add(Section section) {
         boolean existParentId = completeParentIds(section);
         if (!existParentId) {
@@ -169,10 +167,11 @@ public class SectionService extends ServiceImpl<SectionMapper, Section> {
     }
 
     /**
-    * 修改栏目
-    * @param section 实体
-    * @return ResponseEntity
-    */
+     * 修改栏目
+     *
+     * @param section 实体
+     * @return ResponseEntity
+     */
     public ResponseEntity update(Section section) {
         //判断要更新的code是否已经存在
         if (!StringUtils.isEmpty(section.getCode())) {
@@ -191,6 +190,7 @@ public class SectionService extends ServiceImpl<SectionMapper, Section> {
 
     /**
      * 删除栏目
+     *
      * @param id 主键id
      * @return ResponseEntity
      */

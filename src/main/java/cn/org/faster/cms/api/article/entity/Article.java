@@ -19,6 +19,10 @@ public class Article extends BaseEntity{
      */
     private String title;
     /**
+     * 编码
+     */
+    private String code;
+    /**
      * 描述
      */
     private String description;

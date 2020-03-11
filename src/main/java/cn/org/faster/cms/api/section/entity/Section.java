@@ -1,8 +1,8 @@
 package cn.org.faster.cms.api.section.entity;
 
 import cn.org.faster.framework.mybatis.entity.BaseEntity;
-import lombok.Data;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
@@ -12,7 +12,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @TableName("tb_section")
-public class Section extends BaseEntity{
+public class Section extends BaseEntity {
     /**
      * 名称
      */

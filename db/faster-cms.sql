@@ -204,10 +204,10 @@ INSERT INTO `sys_user_role` VALUES (0, 0, 0, NULL, NULL, '2018-06-11 17:47:05', 
 DROP TABLE IF EXISTS `tb_section`;
 CREATE TABLE `tb_section` (
   `id` bigint(20) NOT NULL COMMENT '主键id',
-  `name` varchar(36) COLLATE utf8mb4_bin NOT NULL COMMENT '名称',
-  `code` varchar(32) COLLATE utf8mb4_bin NOT NULL COMMENT '编码',
+  `name` varchar(256) COLLATE utf8mb4_bin NOT NULL COMMENT '名称',
+  `code` varchar(256) COLLATE utf8mb4_bin NOT NULL COMMENT '编码',
   `position` varchar(32) COLLATE utf8mb4_bin NOT NULL COMMENT '位置（存储在字典中）',
-  `description` varchar(256) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '描述',
+  `description` varchar(4096) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '描述',
   `img` varchar(1024) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '封面图片',
   `parent_id` bigint(20) NOT NULL COMMENT '父id',
   `parent_ids` longtext COLLATE utf8mb4_bin NOT NULL COMMENT '全部父id',
@@ -235,7 +235,8 @@ DROP TABLE IF EXISTS `tb_article`;
 CREATE TABLE `tb_article` (
   `id` bigint(20) NOT NULL COMMENT '主键id',
   `title` varchar(256) COLLATE utf8mb4_bin NOT NULL COMMENT '标题',
-  `description` varchar(256) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '描述',
+  `code` varchar(256) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '编码',
+  `description` varchar(4096) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '描述',
   `img` varchar(1024) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '封面图片',
   `section_id` bigint(20) NOT NULL COMMENT '栏目id',
   `publish_status` tinyint(4) NOT NULL COMMENT '发布状态（0. 未发布 1.已发布）',

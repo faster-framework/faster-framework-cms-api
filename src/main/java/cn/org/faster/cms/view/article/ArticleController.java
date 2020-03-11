@@ -19,7 +19,7 @@ import java.util.Map;
  * @since 2019-12-06
  */
 @Controller
-@RequestMapping("/art")
+@RequestMapping("/a")
 public class ArticleController {
     @Autowired
     private ArticleService articleService;

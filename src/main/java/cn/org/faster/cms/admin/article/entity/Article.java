@@ -23,6 +23,10 @@ public class Article extends BaseEntity{
      */
     private String description;
     /**
+     * 编码
+     */
+    private String code;
+    /**
      * 封面图片
      */
     private String img;

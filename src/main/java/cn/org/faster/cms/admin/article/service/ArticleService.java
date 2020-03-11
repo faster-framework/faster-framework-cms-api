@@ -35,6 +35,9 @@ public class ArticleService extends ServiceImpl<ArticleMapper, Article> {
         if (!StringUtils.isEmpty(article.getTitle())) {
             queryWrapper.eq(Article::getTitle, article.getTitle());
         }
+        if (!StringUtils.isEmpty(article.getCode())) {
+            queryWrapper.eq(Article::getCode, article.getCode());
+        }
         if (!StringUtils.isEmpty(article.getDescription())) {
             queryWrapper.eq(Article::getDescription, article.getDescription());
         }
@@ -87,6 +90,9 @@ public class ArticleService extends ServiceImpl<ArticleMapper, Article> {
         }
         if (!StringUtils.isEmpty(article.getTitle())) {
             queryWrapper.eq(Article::getTitle, article.getTitle());
+        }
+        if (!StringUtils.isEmpty(article.getCode())) {
+            queryWrapper.eq(Article::getCode, article.getCode());
         }
         if (!StringUtils.isEmpty(article.getDescription())) {
             queryWrapper.eq(Article::getDescription, article.getDescription());
@@ -141,6 +147,9 @@ public class ArticleService extends ServiceImpl<ArticleMapper, Article> {
         }
         if (!StringUtils.isEmpty(article.getTitle())) {
             queryWrapper.eq(Article::getTitle, article.getTitle());
+        }
+        if (!StringUtils.isEmpty(article.getCode())) {
+            queryWrapper.eq(Article::getCode, article.getCode());
         }
         if (!StringUtils.isEmpty(article.getDescription())) {
             queryWrapper.eq(Article::getDescription, article.getDescription());
@@ -199,6 +208,10 @@ public class ArticleService extends ServiceImpl<ArticleMapper, Article> {
      */
     public ResponseEntity add(Article article) {
         article.preInsert();
+        //如果为已发布，设置发布时间
+        if (Integer.valueOf(1).equals(article.getPublishStatus())) {
+            article.setPublishDate(LocalDateTime.now());
+        }
         super.save(article);
         return new ResponseEntity(HttpStatus.CREATED);
     }

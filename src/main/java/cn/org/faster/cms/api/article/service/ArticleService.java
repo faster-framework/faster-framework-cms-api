@@ -32,6 +32,9 @@ public class ArticleService extends ServiceImpl<ArticleMapper, Article> {
         if (!StringUtils.isEmpty(article.getTitle())) {
             queryWrapper.eq(Article::getTitle, article.getTitle());
         }
+        if (!StringUtils.isEmpty(article.getCode())) {
+            queryWrapper.eq(Article::getCode, article.getCode());
+        }
         if (!StringUtils.isEmpty(article.getDescription())) {
             queryWrapper.eq(Article::getDescription, article.getDescription());
         }
@@ -85,6 +88,9 @@ public class ArticleService extends ServiceImpl<ArticleMapper, Article> {
         }
         if (!StringUtils.isEmpty(article.getTitle())) {
             queryWrapper.eq(Article::getTitle, article.getTitle());
+        }
+        if (!StringUtils.isEmpty(article.getCode())) {
+            queryWrapper.eq(Article::getCode, article.getCode());
         }
         if (!StringUtils.isEmpty(article.getDescription())) {
             queryWrapper.eq(Article::getDescription, article.getDescription());
