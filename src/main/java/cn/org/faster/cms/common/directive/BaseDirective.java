@@ -19,7 +19,7 @@ public abstract class BaseDirective implements TemplateDirectiveModel {
     }
 
     protected String variableName(Map map) {
-        String variableName = MapUtil.getStr(map, "asName");
+        String variableName = MapUtil.getStr(map, "as");
         return StringUtils.isEmpty(variableName) ? "data" : variableName;
     }
 }

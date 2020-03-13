@@ -28,7 +28,6 @@ public class SectionsDirective extends BaseDirective {
 
         Section sectionQuery = new Section();
         sectionQuery.setParentId(MapUtil.getLong(map, "parentId"));
-        sectionQuery.setPosition(MapUtil.getStr(map, "position"));
         sectionQuery.setShowStatus(MapUtil.getInt(map, "showStatus"));
         sectionQuery.setSize(MapUtil.getInt(map, "size"));
         sectionQuery.setPublishStatus(1);

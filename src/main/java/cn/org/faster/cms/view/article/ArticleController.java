@@ -38,6 +38,6 @@ public class ArticleController {
         Map<String, Object> params = new HashMap<>();
         params.put("id", id);
         model.addAttribute("page", params);
-        return section.getContentTemplatePath();
+        return section.getArticleTemplatePath();
     }
 }

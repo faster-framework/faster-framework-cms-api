@@ -1,6 +1,7 @@
 package cn.org.faster.cms.common.directive;
 
 import cn.hutool.core.map.MapUtil;
+import cn.org.faster.cms.api.article.entity.Article;
 import cn.org.faster.cms.api.article.service.ArticleService;
 import freemarker.core.Environment;
 import freemarker.template.TemplateDirectiveBody;
@@ -23,12 +24,14 @@ public class ArticleDirective extends BaseDirective {
 
     @Override
     public void execute(Environment environment, Map map, TemplateModel[] templateModels, TemplateDirectiveBody templateDirectiveBody) throws TemplateException, IOException {
-        Long id = MapUtil.getLong(map, "id");
-        if (id == null) {
-            return;
-        }
+        Article articleQuery = new Article();
+        articleQuery.setCode(MapUtil.getStr(map, "code"));
+        articleQuery.setId(MapUtil.getLong(map, "id"));
 
-        environment.setVariable(variableName(map), super.buildModel(articleService.getById(id)));
+
+        Article article = articleService.query(articleQuery);
+
+        environment.setVariable(variableName(map), super.buildModel(article == null ? new Article() : article));
 
         templateDirectiveBody.render(environment.getOut());
     }

@@ -6,13 +6,12 @@ import cn.org.faster.cms.common.config.CmsProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 /**
  * @author zhangbowen
@@ -41,7 +40,11 @@ public class SectionController {
         Section section = sectionService.query(query);
         current = Optional.ofNullable(current).orElse("1");
         Map<String, Object> params = new HashMap<>();
-        params.put("sectionCode", sectionCode);
+        params.put("sCode", sectionCode);
+        List<String> parentIdList = Arrays.asList(section.getParentIds().split(","));
+        List<Section> parentList = new ArrayList<>(sectionService.listByIds(parentIdList));
+        params.put("parentList", parentList);
+        params.put("parent",  CollectionUtils.isEmpty(parentList) ? null : parentList.get(parentList.size() - 1));
         params.put("current", current);
         params.put("size", cmsProperties.getPageSize());
         model.addAttribute("page", params);

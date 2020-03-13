@@ -31,33 +31,31 @@ public class ArticlesDirective extends BaseDirective {
     @Override
     public void execute(Environment environment, Map map, TemplateModel[] templateModels, TemplateDirectiveBody templateDirectiveBody) throws TemplateException, IOException {
         //查询文章
-        Article query = new Article();
+        Article articleQuery = new Article();
 
-        String sectionCode = MapUtil.getStr(map, "sectionCode");
-        if(!StringUtils.isEmpty(sectionCode)){
+        String sectionCode = MapUtil.getStr(map, "sCode");
+        if (!StringUtils.isEmpty(sectionCode)) {
             //根据sectionCode获取sectionId
             Section sectionQuery = new Section();
-            sectionQuery.setCode(MapUtil.getStr(map, "sectionCode"));
+            sectionQuery.setCode(MapUtil.getStr(map, "sCode"));
             Section section = sectionService.query(sectionQuery);
-            if(section !=null){
-                query.setSectionId(section.getId());
+            if (section != null) {
+                articleQuery.setSectionId(section.getId());
             } else {
-                query.setSectionId(-1L);
+                articleQuery.setSectionId(-1L);
             }
         }
 
-        query.setPublishStatus(1);
+        articleQuery.setShowStatus(MapUtil.getInt(map, "showStatus"));
 
-        Integer size = MapUtil.getInt(map, "size");
-        if(size!=null){
-            query.setSize(size);
-        }
-        Integer current = MapUtil.getInt(map, "current");
-        if(current!=null){
-            query.setCurrent(current);
+        if (articleQuery.getShowStatus() == null) {
+            articleQuery.setShowStatus(1);
         }
 
-        List<Article> articleList = articleService.list(query).getRecords();
+        articleQuery.setTopStatus(MapUtil.getBool(map, "topStatus") ? 1 : 0);
+        articleQuery.setSize(MapUtil.getInt(map, "size"));
+
+        List<Article> articleList = articleQuery.getSize() == null ? articleService.listAll(articleQuery) : articleService.list(articleQuery).getRecords();
 
         environment.setVariable(variableName(map), super.buildModel(articleList));
 

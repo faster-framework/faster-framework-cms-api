@@ -1,10 +1,10 @@
 package cn.org.faster.cms.common.directive;
 
-import cn.hutool.core.map.MapUtil;
 import cn.org.faster.cms.api.article.entity.Article;
 import cn.org.faster.cms.api.article.service.ArticleService;
 import cn.org.faster.cms.api.section.entity.Section;
 import cn.org.faster.cms.api.section.service.SectionService;
+import cn.org.faster.cms.common.utils.MapUtils;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import freemarker.core.Environment;
 import freemarker.template.TemplateDirectiveBody;
@@ -31,34 +31,33 @@ public class ArticlePageDirective extends BaseDirective {
     @Override
     public void execute(Environment environment, Map map, TemplateModel[] templateModels, TemplateDirectiveBody templateDirectiveBody) throws TemplateException, IOException {
         //查询文章
-        Article query = new Article();
+        Article articleQuery = new Article();
 
-        String sectionCode = MapUtil.getStr(map, "sectionCode");
+        String sectionCode = MapUtils.getStr(map, "sCode");
         if (!StringUtils.isEmpty(sectionCode)) {
             //根据sectionCode获取sectionId
             Section sectionQuery = new Section();
-            sectionQuery.setCode(MapUtil.getStr(map, "sectionCode"));
+            sectionQuery.setCode(MapUtils.getStr(map, "sCode"));
             Section section = sectionService.query(sectionQuery);
             if (section != null) {
-                query.setSectionId(section.getId());
+                articleQuery.setSectionId(section.getId());
             } else {
-                query.setSectionId(-1L);
+                articleQuery.setSectionId(-1L);
             }
         }
+        articleQuery.setShowStatus(MapUtils.getIntOrDefault(map, "show", 1));
+        articleQuery.setTopStatus(MapUtils.getInt(map, "top"));
 
-        query.setPublishStatus(1);
-
-        Integer size = MapUtil.getInt(map, "size");
-
+        Integer size = MapUtils.getInt(map, "size");
         if (size != null) {
-            query.setSize(size);
+            articleQuery.setSize(size);
         }
-        Integer current = MapUtil.getInt(map, "current");
+        Integer current = MapUtils.getInt(map, "current");
         if (current != null) {
-            query.setCurrent(current);
+            articleQuery.setCurrent(current);
         }
 
-        IPage<Article> articleIPage = articleService.list(query);
+        IPage<Article> articleIPage = articleService.list(articleQuery);
 
         environment.setVariable(variableName(map), super.buildModel(articleIPage));
 

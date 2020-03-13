@@ -50,9 +50,6 @@ public class SectionService extends ServiceImpl<SectionMapper, Section> {
         if (!StringUtils.isEmpty(section.getCode())) {
             queryWrapper.eq(Section::getCode, section.getCode());
         }
-        if (!StringUtils.isEmpty(section.getPosition())) {
-            queryWrapper.eq(Section::getPosition, section.getPosition());
-        }
         if (!StringUtils.isEmpty(section.getDescription())) {
             queryWrapper.eq(Section::getDescription, section.getDescription());
         }
@@ -65,11 +62,11 @@ public class SectionService extends ServiceImpl<SectionMapper, Section> {
         if (!StringUtils.isEmpty(section.getParentIds())) {
             queryWrapper.eq(Section::getParentIds, section.getParentIds());
         }
-        if (!StringUtils.isEmpty(section.getReqType())) {
-            queryWrapper.eq(Section::getReqType, section.getReqType());
+        if (section.getTemplateType() != null) {
+            queryWrapper.eq(Section::getTemplateType, section.getTemplateType());
         }
-        if (!StringUtils.isEmpty(section.getReqLocation())) {
-            queryWrapper.eq(Section::getReqLocation, section.getReqLocation());
+        if (!StringUtils.isEmpty(section.getLink())) {
+            queryWrapper.eq(Section::getLink, section.getLink());
         }
         if (section.getPublishStatus() != null) {
             queryWrapper.eq(Section::getPublishStatus, section.getPublishStatus());
@@ -77,12 +74,16 @@ public class SectionService extends ServiceImpl<SectionMapper, Section> {
         if (section.getShowStatus() != null) {
             queryWrapper.eq(Section::getShowStatus, section.getShowStatus());
         }
+        if (section.getTopStatus() != null) {
+            queryWrapper.eq(Section::getTopStatus, section.getTopStatus());
+        }
         if (!StringUtils.isEmpty(section.getTemplatePath())) {
             queryWrapper.eq(Section::getTemplatePath, section.getTemplatePath());
         }
-        if (!StringUtils.isEmpty(section.getContentTemplatePath())) {
-            queryWrapper.eq(Section::getContentTemplatePath, section.getContentTemplatePath());
+        if (!StringUtils.isEmpty(section.getArticleTemplatePath())) {
+            queryWrapper.eq(Section::getArticleTemplatePath, section.getArticleTemplatePath());
         }
+
         if (section.getCreateBy() != null) {
             queryWrapper.eq(Section::getCreateBy, section.getCreateBy());
         }

@@ -20,10 +20,6 @@ public class SectionUpdateRequest extends BaseEntity{
      */
     private String code;
     /**
-     * 位置（存储在字典中）
-     */
-    private String position;
-    /**
      * 描述
      */
     private String description;
@@ -40,27 +36,39 @@ public class SectionUpdateRequest extends BaseEntity{
      */
     private String parentIds;
     /**
-     * 跳转类型（存储在字典中）
+     * 模板类型（1. 普通  2.分页）
      */
-    private String reqType;
-    /**
-     * 跳转地址（基于跳转类型生成跳转地址）
-     */
-    private String reqLocation;
-    /**
-     * 发布状态（0.未发布1.已发布）
-     */
-    private Integer publishStatus;
-    /**
-     * 展示状态（0.隐藏1.展示）
-     */
-    private Integer showStatus;
+    private Integer templateType;
     /**
      * 模板地址
      */
     private String templatePath;
     /**
-     * 内容模板地址
+     * 链接地址
      */
-    private String contentTemplatePath;
+    private String link;
+    /**
+     * 是否发布（0. 未发布 1.已发布）
+     */
+    private Integer publishStatus;
+    /**
+     * 列表是否展示（0. 隐藏  1. 展示）
+     */
+    private Integer showStatus;
+    /**
+     * 是否置顶（0. 否 1. 是）
+     */
+    private Integer topStatus;
+    /**
+     * 文章模板地址
+     */
+    private String articleTemplatePath;
+    /**
+     * 富文本内容
+     */
+    private String content;
+    /**
+     * 资源地址
+     */
+    private String resourceUrl;
 }

@@ -18,26 +18,6 @@ CREATE TABLE `sys_dict` (
   KEY `idx_name` (`name`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='字典表';
 
-
-INSERT INTO `sys_dict` VALUES (232886200787009536, '顶部导航', 'section:position', 'top-nav', 1, 0, 0, '2019-12-02 13:39:35', '2019-12-05 10:16:39', 11, NULL, 0);
-INSERT INTO `sys_dict` VALUES (232886248065204224, '底部导航', 'section:position', 'footer-nav', 1, 0, 0, '2019-12-02 13:39:46', '2019-12-02 13:39:46', 0, NULL, 0);
-INSERT INTO `sys_dict` VALUES (232886374452166656, '顶部菜单', 'section:position', 'top-menu', 1, 0, 0, '2019-12-02 13:40:16', '2019-12-02 13:40:16', 0, NULL, 0);
-INSERT INTO `sys_dict` VALUES (232886452973731840, '底部菜单', 'section:position', 'footer-menu', 1, 0, 0, '2019-12-02 13:40:35', '2019-12-02 13:40:35', 0, NULL, 0);
-INSERT INTO `sys_dict` VALUES (232886532162191360, '列表', 'section:reqType', 'list', 1, 0, 0, '2019-12-02 13:40:54', '2019-12-02 13:40:54', 0, NULL, 0);
-INSERT INTO `sys_dict` VALUES (232886578974818304, '链接', 'section:reqType', 'url', 1, 0, 0, '2019-12-02 13:41:05', '2019-12-02 13:41:05', 0, NULL, 0);
-INSERT INTO `sys_dict` VALUES (232886630912884736, '富文本', 'section:reqType', 'editor', 1, 0, 0, '2019-12-02 13:41:17', '2019-12-02 13:41:17', 0, NULL, 0);
-INSERT INTO `sys_dict` VALUES (232886854553174016, '自定义模板', 'section:reqType', 'template', 1, 0, 0, '2019-12-02 13:42:11', '2019-12-02 13:42:11', 0, NULL, 0);
-INSERT INTO `sys_dict` VALUES (232886894545862656, '无跳转', 'section:reqType', 'none', 1, 0, 0, '2019-12-02 13:42:20', '2019-12-02 13:42:20', 0, NULL, 0);
-INSERT INTO `sys_dict` VALUES (233283241098870784, '微信', 'contact:weixin', '18764050615', 1, 0, 0, '2019-12-03 15:57:17', '2019-12-03 15:57:34', 0, NULL, 0);
-INSERT INTO `sys_dict` VALUES (233283281246748672, 'qq', 'contact:qq', '515445681', 1, 0, 0, '2019-12-03 15:57:26', '2019-12-03 16:00:39', 0, NULL, 0);
-INSERT INTO `sys_dict` VALUES (233284163078193152, '微博', 'contact:weibo', '没有', 1, 0, 0, '2019-12-03 16:00:56', '2019-12-03 16:00:56', 0, NULL, 0);
-INSERT INTO `sys_dict` VALUES (233284256309182464, '公司地址', 'contact:address', '山东省济南市历下区', 1, 0, 0, '2019-12-03 16:01:19', '2019-12-03 16:01:19', 0, NULL, 0);
-INSERT INTO `sys_dict` VALUES (233284401843142656, '邮箱', 'contact:email', '515445681@qq.com', 1, 0, 0, '2019-12-03 16:01:53', '2019-12-03 16:01:53', 0, NULL, 0);
-INSERT INTO `sys_dict` VALUES (233284483049062400, '电话', 'contact:phone', '18764050615', 1, 0, 0, '2019-12-03 16:02:13', '2019-12-03 16:02:13', 0, NULL, 0);
-INSERT INTO `sys_dict` VALUES (233284647507722240, '版权信息', 'copyright', '©济南小龟信息科技有限公司', 1, 0, 0, '2019-12-03 16:02:52', '2019-12-03 16:02:52', 0, NULL, 0);
-INSERT INTO `sys_dict` VALUES (233658463597625344, '首页轮播图', 'section:position', 'banner', 1, 0, 0, '2019-12-04 16:48:17', '2019-12-05 15:07:36', 0, NULL, 0);
-INSERT INTO `sys_dict` VALUES (233661863877935104, '其他', 'section:position', 'none', 1, 0, 0, '2019-12-04 17:01:47', '2019-12-05 15:07:46', 0, NULL, 0);
-
 -- ----------------------------
 -- Table structure for sys_permission
 -- ----------------------------
@@ -206,17 +186,19 @@ CREATE TABLE `tb_section` (
   `id` bigint(20) NOT NULL COMMENT '主键id',
   `name` varchar(256) COLLATE utf8mb4_bin NOT NULL COMMENT '名称',
   `code` varchar(256) COLLATE utf8mb4_bin NOT NULL COMMENT '编码',
-  `position` varchar(32) COLLATE utf8mb4_bin NOT NULL COMMENT '位置（存储在字典中）',
   `description` varchar(4096) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '描述',
   `img` varchar(1024) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '封面图片',
   `parent_id` bigint(20) NOT NULL COMMENT '父id',
   `parent_ids` longtext COLLATE utf8mb4_bin NOT NULL COMMENT '全部父id',
-  `req_type` varchar(32) COLLATE utf8mb4_bin NOT NULL COMMENT '跳转类型（存储在字典中）',
-  `req_location` varchar(256) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '跳转地址（基于跳转类型生成跳转地址）',
-  `publish_status` tinyint(4) NOT NULL COMMENT '发布状态（0. 未发布 1.已发布）',
-  `show_status` tinyint(4) NOT NULL COMMENT '展示状态（0. 隐藏  1. 展示）',
+  `template_type` varchar(32) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '模板类型（1. 普通  2.分页）',
   `template_path` varchar(256) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '模板地址',
-  `content_template_path` varchar(256) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '内容模板地址',
+  `link` varchar(256) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '链接地址',
+  `publish_status` tinyint(4) NOT NULL  DEFAULT '0' COMMENT'是否发布（0. 未发布 1.已发布）',
+  `show_status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '列表是否展示（0. 隐藏  1. 展示）',
+  `top_status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否置顶（0. 否 1.是）',
+  `article_template_path` varchar(256) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '文章模板地址',
+  `content` longtext COLLATE utf8mb4_bin DEFAULT NULL COMMENT '富文本内容',
+  `resource_url` varchar(1024) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '资源文件地址',
   `create_by` bigint(20) DEFAULT NULL COMMENT '创建人',
   `update_by` bigint(20) DEFAULT NULL COMMENT '最后更新人',
   `create_date` datetime NOT NULL COMMENT '创建时间',
@@ -239,9 +221,12 @@ CREATE TABLE `tb_article` (
   `description` varchar(4096) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '描述',
   `img` varchar(1024) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '封面图片',
   `section_id` bigint(20) NOT NULL COMMENT '栏目id',
-  `publish_status` tinyint(4) NOT NULL COMMENT '发布状态（0. 未发布 1.已发布）',
+  `publish_status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '发布状态（0. 未发布 1.已发布）',
   `publish_date` datetime DEFAULT NULL COMMENT '发布时间',
+  `show_status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '列表是否展示（0. 隐藏  1. 展示）',
+  `top_status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否置顶（0. 否 1.是）',
   `content` longtext COLLATE utf8mb4_bin NOT NULL COMMENT '内容（富文本）',
+  `resource_url` varchar(1024) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '资源文件地址',
   `create_by` bigint(20) DEFAULT NULL COMMENT '创建人',
   `update_by` bigint(20) DEFAULT NULL COMMENT '最后更新人',
   `create_date` datetime NOT NULL COMMENT '创建时间',

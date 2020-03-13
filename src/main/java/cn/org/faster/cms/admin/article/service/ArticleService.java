@@ -53,6 +53,12 @@ public class ArticleService extends ServiceImpl<ArticleMapper, Article> {
         if (article.getPublishDate() != null) {
             queryWrapper.eq(Article::getPublishDate, article.getPublishDate());
         }
+        if (article.getShowStatus() != null) {
+            queryWrapper.eq(Article::getShowStatus, article.getShowStatus());
+        }
+        if (article.getTopStatus() != null) {
+            queryWrapper.eq(Article::getTopStatus, article.getTopStatus());
+        }
         if (article.getCreateBy() != null) {
             queryWrapper.eq(Article::getCreateBy, article.getCreateBy());
         }
@@ -77,6 +83,7 @@ public class ArticleService extends ServiceImpl<ArticleMapper, Article> {
         queryWrapper.orderByDesc(Article::getCreateDate);
         return super.baseMapper.selectList(queryWrapper);
     }
+
     /**
      * 分页查询
      *
@@ -109,6 +116,12 @@ public class ArticleService extends ServiceImpl<ArticleMapper, Article> {
         if (article.getPublishDate() != null) {
             queryWrapper.eq(Article::getPublishDate, article.getPublishDate());
         }
+        if (article.getShowStatus() != null) {
+            queryWrapper.eq(Article::getShowStatus, article.getShowStatus());
+        }
+        if (article.getTopStatus() != null) {
+            queryWrapper.eq(Article::getTopStatus, article.getTopStatus());
+        }
         if (article.getCreateBy() != null) {
             queryWrapper.eq(Article::getCreateBy, article.getCreateBy());
         }
@@ -130,7 +143,7 @@ public class ArticleService extends ServiceImpl<ArticleMapper, Article> {
         if (article.getDeleted() != null) {
             queryWrapper.eq(Article::getDeleted, article.getDeleted());
         }
-        queryWrapper.orderByDesc(Article::getCreateDate);
+        queryWrapper.orderByDesc(Article::getTopStatus, Article::getCreateDate);
         return super.baseMapper.selectPage(article.toPage(), queryWrapper);
     }
 
@@ -166,6 +179,12 @@ public class ArticleService extends ServiceImpl<ArticleMapper, Article> {
         if (article.getPublishDate() != null) {
             queryWrapper.eq(Article::getPublishDate, article.getPublishDate());
         }
+        if (article.getShowStatus() != null) {
+            queryWrapper.eq(Article::getShowStatus, article.getShowStatus());
+        }
+        if (article.getTopStatus() != null) {
+            queryWrapper.eq(Article::getTopStatus, article.getTopStatus());
+        }
         if (article.getCreateBy() != null) {
             queryWrapper.eq(Article::getCreateBy, article.getCreateBy());
         }
@@ -187,6 +206,7 @@ public class ArticleService extends ServiceImpl<ArticleMapper, Article> {
         if (article.getDeleted() != null) {
             queryWrapper.eq(Article::getDeleted, article.getDeleted());
         }
+        queryWrapper.last("limit 1");
         return super.getOne(queryWrapper);
     }
 

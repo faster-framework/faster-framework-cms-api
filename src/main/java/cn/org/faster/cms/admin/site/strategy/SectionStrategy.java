@@ -32,45 +32,41 @@ public class SectionStrategy extends BaseStrategy {
     private ArticleService articleService;
 
 
-    private void generateArticle(List<String> sectionParentPathList, List<String> sectionParentPathNameList, Section section) throws IOException, TemplateException {
-        List<String> parentPathList = new ArrayList<>(sectionParentPathList);
-        parentPathList.add(section.getCode());
-
-        List<String> parentPathNameList = new ArrayList<>(sectionParentPathNameList);
-        parentPathNameList.add(section.getName());
-
-        String parentPath = String.join("/", parentPathList);
+    /**
+     * 生成文章
+     *
+     * @param sectionParentList 父级栏目列表
+     * @param section           父级栏目
+     * @throws IOException       io
+     * @throws TemplateException template
+     */
+    private void generateArticle(List<Section> sectionParentList, Section section) throws IOException, TemplateException {
+        List<Section> parentList = new ArrayList<>(sectionParentList);
+        sectionParentList.add(section);
         //生成文章
         Article query = new Article();
         query.setPublishStatus(1);
         query.setSectionId(section.getId());
         List<Article> articleList = articleService.listAll(query);
         for (Article article : articleList) {
-            Template template = configuration.getTemplate(section.getContentTemplatePath());
-            Map<String, Object> param = new HashMap<>();
+            Template template = configuration.getTemplate(section.getArticleTemplatePath());
             Map<String, Object> dataModel = new HashMap<>();
             dataModel.put("id", article.getId());
-            dataModel.put("parentPath", parentPathList);
-            dataModel.put("parentPathName", parentPathNameList);
-            param.put("page", dataModel);
+            dataModel.put("parent", section);
+            dataModel.put("parentList", parentList);
             String fileName = super.cmsProperties.getSiteDir() + "/a/" + article.getId() + ".html";
-            CmsUtils.generateHtml(template, fileName, param);
+            CmsUtils.generateHtml(template, fileName, dataModel);
         }
     }
 
     /**
      * 生成栏目
      *
-     * @param parentPathList 父路径
-     * @param parentNameList 父路径中文
-     * @param section        栏目
+     * @param parentList 父栏目列表
+     * @param section    栏目
      */
-    private void generateSection(List<String> parentPathList, List<String> parentNameList, Section section) throws IOException, TemplateException {
-        String parentPath = String.join("/", parentPathList);
-        parentPath = "/s/" + (StringUtils.isEmpty(parentPath) ? "" : parentPath + "/");
+    private void generateSection(List<Section> parentList, Section section) throws IOException, TemplateException {
         Template template = configuration.getTemplate(section.getTemplatePath());
-        String fullPath = parentPath + section.getCode();
-
         //生成栏目的分页
         //查询栏目下的文章共多少页
         Article query = new Article();
@@ -81,32 +77,32 @@ public class SectionStrategy extends BaseStrategy {
         IPage<Article> page = articleService.list(query);
         long totalPages = page.getPages();
 
+        Section parentSection = CollectionUtils.isEmpty(parentList) ? null : parentList.get(parentList.size() - 1);
+
         if (totalPages == 0) {
-            String fileName = super.cmsProperties.getSiteDir()+ "/s/" + section.getCode() + ".html";
-            Map<String, Object> param = new HashMap<>();
+            String fileName = super.cmsProperties.getSiteDir() + "/s/" + section.getCode() + ".html";
             Map<String, Object> dataModel = new HashMap<>();
             dataModel.put("sCode", section.getCode());
-            dataModel.put("parentPath", parentPath);
-            param.put("page", dataModel);
-            CmsUtils.generateHtml(template, fileName, param);
+            dataModel.put("parent", section);
+            dataModel.put("parentList", parentSection);
+            CmsUtils.generateHtml(template, fileName, dataModel);
         } else {
             //生成分页页面
             for (int i = 1; i <= totalPages; i++) {
-                String fileName = super.cmsProperties.getSiteDir() +  "/s/" + section.getCode() + "/" + i + ".html";
-                Map<String, Object> param = new HashMap<>();
+                String fileName = super.cmsProperties.getSiteDir() + "/s/" + section.getCode() + "/" + i + ".html";
                 Map<String, Object> dataModel = new HashMap<>();
                 dataModel.put("sCode", section.getCode());
-                dataModel.put("parentPath", parentPath);
+                dataModel.put("parent", parentSection);
+                dataModel.put("parentList", parentList);
                 dataModel.put("current", i);
                 dataModel.put("size", cmsProperties.getPageSize());
-                param.put("page", dataModel);
-                CmsUtils.generateHtml(template, fileName, param);
+                CmsUtils.generateHtml(template, fileName, dataModel);
                 //如果为第一页，生成一个以当前code为名称的页面。
                 if (i == 1) {
                     fileName = super.cmsProperties.getSiteDir() + "/s/" + section.getCode() + ".html";
-                    CmsUtils.generateHtml(template, fileName, param);
+                    CmsUtils.generateHtml(template, fileName, dataModel);
                 }
-                generateArticle(parentPathList, parentNameList, section);
+                generateArticle(parentList, section);
             }
         }
     }
@@ -114,30 +110,25 @@ public class SectionStrategy extends BaseStrategy {
     /**
      * 递归处理
      *
-     * @param parentPathList 父级编码列表
-     * @param parentNameList 父级名称列表
-     * @param sectionList    栏目列表
+     * @param parentList  父级栏目列表
+     * @param sectionList 栏目列表
      */
-    private void processRecursive(List<String> parentPathList, List<String> parentNameList, List<Section> sectionList) throws IOException, TemplateException {
+    private void processRecursive(List<Section> parentList, List<Section> sectionList) throws IOException, TemplateException {
         //过滤掉空模板
         sectionList = sectionList.stream()
                 .filter(item -> !StringUtils.isEmpty(item.getTemplatePath()))
                 .collect(Collectors.toList());
         for (Section section : sectionList) {
-            generateSection(parentPathList, parentNameList, section);
+            generateSection(parentList, section);
             //如果包含子类，继续生成
             if (!CollectionUtils.isEmpty(section.getChildren())) {
                 //转化为子类列表
                 List<Section> childrenList = section.getChildren().stream().map(item -> (Section) item).collect(Collectors.toList());
-
-                //添加当前code，重置子类父列表
-                List<String> childrenParentPathList = new ArrayList<>(parentPathList);
-                childrenParentPathList.add(section.getCode());
-                //添加当前name，重置子类父列表
-                List<String> childrenParentNameList = new ArrayList<>(parentPathList);
-                childrenParentNameList.add(section.getName());
-
-                processRecursive(childrenParentPathList, childrenParentNameList, childrenList);
+                //添加当前section，重置子类父列表
+                List<Section> childrenParentList = new ArrayList<>(parentList);
+                childrenParentList.add(section);
+                //递归生成子类
+                processRecursive(childrenParentList, childrenList);
             }
         }
 
@@ -146,6 +137,6 @@ public class SectionStrategy extends BaseStrategy {
     @Override
     public void execute() throws IOException, TemplateException {
         List<Section> sectionList = sectionService.treeList().stream().map(item -> (Section) item).collect(Collectors.toList());
-        processRecursive(new ArrayList<>(), new ArrayList<>(), sectionList);
+        processRecursive(new ArrayList<>(), sectionList);
     }
 }
