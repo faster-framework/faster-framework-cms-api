@@ -225,7 +225,7 @@ CREATE TABLE `tb_article` (
   `publish_date` datetime DEFAULT NULL COMMENT '发布时间',
   `show_status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '列表是否展示（0. 隐藏  1. 展示）',
   `top_status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否置顶（0. 否 1.是）',
-  `content` longtext COLLATE utf8mb4_bin NOT NULL COMMENT '内容（富文本）',
+  `content` longtext COLLATE utf8mb4_bin DEFAULT NULL COMMENT '内容（富文本）',
   `resource_url` varchar(1024) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '资源文件地址',
   `create_by` bigint(20) DEFAULT NULL COMMENT '创建人',
   `update_by` bigint(20) DEFAULT NULL COMMENT '最后更新人',
