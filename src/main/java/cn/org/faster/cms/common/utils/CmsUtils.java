@@ -29,13 +29,13 @@ public class CmsUtils {
         return null;
     }
 
-    public static void generateHtml(Template template, String outputFileName,Object dataModel) throws IOException, TemplateException {
+    public static void generateHtml(Template template, String outputFileName, Object context) throws IOException, TemplateException {
         File file = new File(outputFileName);
         if (!file.getParentFile().exists()) {
-            file.getParentFile().mkdirs();
+            boolean ignore = file.getParentFile().mkdirs();
         }
         FileWriter fileWriter = new FileWriter(outputFileName);
-        template.process(dataModel, fileWriter);
+        template.process(context, fileWriter);
 
     }
 }

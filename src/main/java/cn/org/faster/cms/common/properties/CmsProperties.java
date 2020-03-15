@@ -1,4 +1,4 @@
-package cn.org.faster.cms.common.config;
+package cn.org.faster.cms.common.properties;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -22,4 +22,8 @@ public class CmsProperties {
      * 默认分页数量
      */
     private Integer pageSize = 20;
+    /**
+     * 全局变量前缀
+     */
+    private String contextPrefix = "cms";
 }

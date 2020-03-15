@@ -1,5 +1,6 @@
-package cn.org.faster.cms.admin.site.strategy;
+package cn.org.faster.cms.admin.site.strategy.impl;
 
+import cn.org.faster.cms.admin.site.strategy.BaseStrategy;
 import cn.org.faster.cms.common.utils.CmsUtils;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;

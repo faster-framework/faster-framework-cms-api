@@ -2,16 +2,17 @@ package cn.org.faster.cms.view.section;
 
 import cn.org.faster.cms.api.section.entity.Section;
 import cn.org.faster.cms.api.section.service.SectionService;
-import cn.org.faster.cms.common.config.CmsProperties;
+import cn.org.faster.cms.common.properties.CmsProperties;
+import cn.org.faster.framework.web.exception.model.BasicErrorCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.*;
+import java.util.Map;
 
 /**
  * @author zhangbowen
@@ -34,20 +35,16 @@ public class SectionController {
      * @return
      */
     @GetMapping({"/{sectionCode}/{current}", "/{sectionCode}"})
-    public String list(@PathVariable String sectionCode, @PathVariable(required = false) String current, Model model) {
+    public String list(@PathVariable String sectionCode, @PathVariable(required = false) Integer current, Model model) {
         Section query = new Section();
         query.setCode(sectionCode);
+        query.setPublishStatus(1);
         Section section = sectionService.query(query);
-        current = Optional.ofNullable(current).orElse("1");
-        Map<String, Object> params = new HashMap<>();
-        params.put("sCode", sectionCode);
-        List<String> parentIdList = Arrays.asList(section.getParentIds().split(","));
-        List<Section> parentList = new ArrayList<>(sectionService.listByIds(parentIdList));
-        params.put("parentList", parentList);
-        params.put("parent",  CollectionUtils.isEmpty(parentList) ? null : parentList.get(parentList.size() - 1));
-        params.put("current", current);
-        params.put("size", cmsProperties.getPageSize());
-        model.addAttribute("page", params);
+        if (section == null || StringUtils.isEmpty(section.getTemplatePath())) {
+            BasicErrorCode.ERROR.throwException();
+        }
+        Map<String, Object> params = sectionService.renderTemplate(section, current);
+        model.addAttribute(cmsProperties.getContextPrefix(), params);
         return section.getTemplatePath();
     }
 }

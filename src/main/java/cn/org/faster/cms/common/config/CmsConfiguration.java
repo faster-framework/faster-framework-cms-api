@@ -1,5 +1,6 @@
 package cn.org.faster.cms.common.config;
 
+import cn.org.faster.cms.common.properties.CmsProperties;
 import cn.org.faster.cms.common.utils.CmsUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -18,7 +19,6 @@ import javax.annotation.PostConstruct;
 public class CmsConfiguration implements WebMvcConfigurer {
     @Autowired
     private CmsProperties cmsProperties;
-
 
     @Bean
     public StaticInterceptor staticInterceptor() {

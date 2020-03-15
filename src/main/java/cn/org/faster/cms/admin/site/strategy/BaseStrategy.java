@@ -1,16 +1,12 @@
 package cn.org.faster.cms.admin.site.strategy;
 
-import cn.org.faster.cms.common.config.CmsProperties;
+import cn.org.faster.cms.common.properties.CmsProperties;
 import freemarker.template.Configuration;
-import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.ResourceUtils;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 
 import javax.annotation.PostConstruct;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 
 /**

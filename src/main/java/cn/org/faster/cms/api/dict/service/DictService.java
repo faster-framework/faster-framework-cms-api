@@ -25,7 +25,7 @@ public class DictService extends ServiceImpl<DictMapper, SysDict> {
      * @param sysDict 请求参数
      * @return 字典分页列表
      */
-    public IPage<SysDict> list(SysDict sysDict) {
+    public IPage<SysDict> page(SysDict sysDict) {
         LambdaQueryWrapper<SysDict> queryWrapper = new LambdaQueryWrapper<>();
         if (!StringUtils.isEmpty(sysDict.getName())) {
             queryWrapper.eq(SysDict::getName, sysDict.getName());
@@ -43,29 +43,6 @@ public class DictService extends ServiceImpl<DictMapper, SysDict> {
         return super.baseMapper.selectPage(sysDict.toPage(), queryWrapper);
     }
 
-    /**
-     * 查询全部
-     *
-     * @param sysDict 请求参数
-     * @return 字典分页列表
-     */
-    public List<SysDict> listAll(SysDict sysDict) {
-        LambdaQueryWrapper<SysDict> queryWrapper = new LambdaQueryWrapper<>();
-        if (!StringUtils.isEmpty(sysDict.getName())) {
-            queryWrapper.eq(SysDict::getName, sysDict.getName());
-        }
-        if (!StringUtils.isEmpty(sysDict.getType())) {
-            queryWrapper.eq(SysDict::getType, sysDict.getType());
-        }
-        if (!StringUtils.isEmpty(sysDict.getDictValue())) {
-            queryWrapper.eq(SysDict::getDictValue, sysDict.getDictValue());
-        }
-        if (sysDict.getShowStatus() != null) {
-            queryWrapper.eq(SysDict::getShowStatus, sysDict.getShowStatus());
-        }
-        queryWrapper.orderByAsc(BaseEntity::getSort);
-        return super.baseMapper.selectList(queryWrapper);
-    }
 
     /**
      * 根据主键id查询详情

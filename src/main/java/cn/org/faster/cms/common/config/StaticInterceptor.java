@@ -1,6 +1,7 @@
 package cn.org.faster.cms.common.config;
 
 import cn.hutool.core.io.file.FileReader;
+import cn.org.faster.cms.common.properties.CmsProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.util.StringUtils;

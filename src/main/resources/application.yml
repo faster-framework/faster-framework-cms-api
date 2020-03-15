@@ -12,3 +12,10 @@ spring:
     suffix: ""
 app:
   group: faster-cms
+  shiro:
+    covered: true
+    filter-chain-definition-map:
+      "[/admin/login]": anon
+      "[/admin/media/**]": anon
+      "[/admin/captcha/**]": anon
+      "[/admin/**]": jwt
