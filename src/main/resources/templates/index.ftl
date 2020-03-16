@@ -1,5 +1,5 @@
 <html>
 <body>
-hello
+Hello Faster CMS
 </body>
 </html>
