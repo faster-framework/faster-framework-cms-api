@@ -1,10 +1,10 @@
 app:
   datasource:
     name: faster-cms
-    host: 139.199.23.31
-    port: 3306
-    username: root
-    password: 18764050615
+    host:
+    port:
+    username:
+    password:
   upload:
     local:
       file-dir: /Users/zhangbowen/data/upload/faster-cms
