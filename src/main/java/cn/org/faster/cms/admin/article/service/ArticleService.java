@@ -2,6 +2,8 @@ package cn.org.faster.cms.admin.article.service;
 
 import cn.org.faster.cms.admin.article.entity.Article;
 import cn.org.faster.cms.admin.article.mapper.ArticleMapper;
+import cn.org.faster.cms.admin.section.entity.Section;
+import cn.org.faster.framework.web.exception.model.BasicErrorCode;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -219,7 +221,15 @@ public class ArticleService extends ServiceImpl<ArticleMapper, Article> {
     public Article queryById(Long id) {
         return super.getById(id);
     }
-
+    /**
+     * 判断是否已经存在code
+     *
+     * @param code 权限code
+     * @return true or false
+     */
+    private boolean existCode(String code) {
+        return this.getOne(new LambdaQueryWrapper<Article>().eq(Article::getCode, code)) != null;
+    }
     /**
      * 添加文章
      *
@@ -231,6 +241,11 @@ public class ArticleService extends ServiceImpl<ArticleMapper, Article> {
         //如果为已发布，设置发布时间
         if (Integer.valueOf(1).equals(article.getPublishStatus())) {
             article.setPublishDate(LocalDateTime.now());
+        }
+        if (!StringUtils.isEmpty(article.getCode())) {
+            if (existCode(article.getCode())) {
+                BasicErrorCode.ERROR.throwException("编码已经存在");
+            }
         }
         super.save(article);
         return new ResponseEntity(HttpStatus.CREATED);
@@ -247,6 +262,16 @@ public class ArticleService extends ServiceImpl<ArticleMapper, Article> {
         //如果为已发布，设置发布时间
         if (Integer.valueOf(1).equals(article.getPublishStatus())) {
             article.setPublishDate(LocalDateTime.now());
+        }
+        //判断要更新的code是否已经存在
+        if (!StringUtils.isEmpty(article.getCode())) {
+            Article oldArticle = super.baseMapper.selectById(article.getId());
+            if (oldArticle != null) {
+                //如果旧的code跟要更改的code一致，说明不需要修改。如果不一致，并且数据库已经存在要更改的code，返回错误
+                if (!article.getCode().equals(oldArticle.getCode()) && existCode(article.getCode())) {
+                    BasicErrorCode.ERROR.throwException("编码已经存在");
+                }
+            }
         }
         super.updateById(article);
         return new ResponseEntity(HttpStatus.CREATED);
