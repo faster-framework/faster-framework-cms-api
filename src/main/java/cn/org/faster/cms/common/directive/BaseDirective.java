@@ -31,12 +31,15 @@ public abstract class BaseDirective implements TemplateDirectiveModel {
         Long id = TemplateMapUtils.getLongOrDefault(map, "id", null);
         boolean show = TemplateMapUtils.getBoolOrDefaultByTemplate(map, "show", true);
         Boolean top = TemplateMapUtils.getBoolOrDefaultByTemplate(map, "top", null);
-        String as = TemplateMapUtils.getStrOrDefault(map, "as", "data");
+        String as = TemplateMapUtils.getStrOrDefault(map, "alias", "data");
         String code = TemplateMapUtils.getStrOrDefault(map, "code", null);
         String scode = TemplateMapUtils.getStrOrDefault(map, "scode", null);
         Long sid = TemplateMapUtils.getLongOrDefault(map, "sid", null);
         String type = TemplateMapUtils.getStrOrDefault(map, "type", null);
         String name = TemplateMapUtils.getStrOrDefault(map, "name", null);
+        String pcode = TemplateMapUtils.getStrOrDefault(map, "pcode", null);
+        Long excludeId = TemplateMapUtils.getLongOrDefault(map, "exclude", null);
+        //根据pcode获取pid
         //判断当前页面是否为分页模板，如果为分页模板，自动填充size与current
         TagContext tagContext = TagContext.builder()
                 .list(list)
@@ -53,9 +56,15 @@ public abstract class BaseDirective implements TemplateDirectiveModel {
                 .sid(sid)
                 .type(type)
                 .name(name)
+                .pcode(pcode)
+                .excludeId(excludeId)
                 .build();
 
-        TemplateModel templateModel = wrapperBuilder.build().wrap(buildData(tagContext));
+        Object data = buildData(tagContext);
+        if (data == null) {
+            return;
+        }
+        TemplateModel templateModel = wrapperBuilder.build().wrap(data);
         environment.setVariable(StringUtils.isEmpty(as) ? "data" : as, templateModel);
         templateDirectiveBody.render(environment.getOut());
     }

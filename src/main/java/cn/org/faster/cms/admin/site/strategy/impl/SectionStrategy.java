@@ -168,6 +168,9 @@ public class SectionStrategy extends BaseStrategy {
      * @throws TemplateException template
      */
     private void generateArticle(List<Section> sectionParentList, Section section) throws IOException, TemplateException {
+        if(StringUtils.isEmpty(section.getArticleTemplatePath())){
+            return;
+        }
         List<Section> parentList = new ArrayList<>(sectionParentList);
         parentList.add(section);
         //生成文章

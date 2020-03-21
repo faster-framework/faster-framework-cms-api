@@ -1,6 +1,7 @@
 package cn.org.faster.cms.api.section.entity;
 
 import cn.org.faster.framework.mybatis.entity.BaseEntity;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -73,4 +74,9 @@ public class Section extends BaseEntity {
      * 资源地址
      */
     private String resourceUrl;
+    /**
+     * 排除id
+     */
+    @TableField(exist = false)
+    private Long excludeId;
 }

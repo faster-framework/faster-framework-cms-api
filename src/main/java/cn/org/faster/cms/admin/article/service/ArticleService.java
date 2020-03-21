@@ -82,7 +82,7 @@ public class ArticleService extends ServiceImpl<ArticleMapper, Article> {
         if (article.getDeleted() != null) {
             queryWrapper.eq(Article::getDeleted, article.getDeleted());
         }
-        queryWrapper.orderByDesc(Article::getCreateDate);
+        queryWrapper.orderByDesc(Article::getTopStatus).orderByAsc(Article::getSort).orderByDesc(Article::getPublishDate);
         return super.baseMapper.selectList(queryWrapper);
     }
 
@@ -145,7 +145,7 @@ public class ArticleService extends ServiceImpl<ArticleMapper, Article> {
         if (article.getDeleted() != null) {
             queryWrapper.eq(Article::getDeleted, article.getDeleted());
         }
-        queryWrapper.orderByDesc(Article::getTopStatus, Article::getCreateDate);
+        queryWrapper.orderByDesc(Article::getTopStatus).orderByAsc(Article::getSort).orderByDesc(Article::getPublishDate);
         return super.baseMapper.selectPage(article.toPage(), queryWrapper);
     }
 

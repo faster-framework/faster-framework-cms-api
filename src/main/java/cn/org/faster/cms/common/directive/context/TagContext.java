@@ -68,4 +68,12 @@ public class TagContext {
      * 名称
      */
     private String name;
+    /**
+     * 父编码
+     */
+    private String pcode;
+    /**
+     * 排除某个id
+     */
+    private Long excludeId;
 }

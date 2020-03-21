@@ -1,10 +1,12 @@
 package cn.org.faster.cms.api.article.entity;
 
 import cn.org.faster.framework.mybatis.entity.BaseEntity;
+import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.Data;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.EqualsAndHashCode;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * @author faster-builder
@@ -37,7 +39,7 @@ public class Article extends BaseEntity{
     /**
      * 发布时间
      */
-    private LocalDateTime publishDate;
+    private Date publishDate;
     /**
      * 是否发布（0. 未发布 1.已发布）
      */
@@ -59,4 +61,9 @@ public class Article extends BaseEntity{
      * 资源地址
      */
     private String resourceUrl;
+    /**
+     * 排除id
+     */
+    @TableField(exist = false)
+    private Long excludeId;
 }

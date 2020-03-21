@@ -89,6 +89,9 @@ public class ArticleService extends ServiceImpl<ArticleMapper, Article> {
         if (article.getDeleted() != null) {
             queryWrapper.eq(Article::getDeleted, article.getDeleted());
         }
+        if (article.getExcludeId() != null) {
+            queryWrapper.ne(Article::getId, article.getExcludeId());
+        }
         queryWrapper.orderByDesc(Article::getTopStatus).orderByAsc(Article::getSort).orderByDesc(Article::getPublishDate);
         return super.baseMapper.selectPage(article.toPage(), queryWrapper);
     }
@@ -151,6 +154,9 @@ public class ArticleService extends ServiceImpl<ArticleMapper, Article> {
         }
         if (article.getDeleted() != null) {
             queryWrapper.eq(Article::getDeleted, article.getDeleted());
+        }
+        if (article.getExcludeId() != null) {
+            queryWrapper.ne(Article::getId, article.getExcludeId());
         }
         queryWrapper.last("limit 1");
         return super.getOne(queryWrapper);

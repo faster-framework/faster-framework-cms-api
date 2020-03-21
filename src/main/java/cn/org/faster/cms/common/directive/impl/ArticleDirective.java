@@ -32,6 +32,7 @@ public class ArticleDirective extends BaseDirective {
         articleQuery.setSize(tagContext.getSize());
         articleQuery.setCurrent(tagContext.getCurrent());
         articleQuery.setSectionId(tagContext.getSid());
+        articleQuery.setExcludeId(tagContext.getExcludeId());
 
         //如果是根据栏目code查询，需要栏目id为空
         if (!StringUtils.isEmpty(tagContext.getScode()) && StringUtils.isEmpty(tagContext.getSid())) {

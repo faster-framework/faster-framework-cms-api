@@ -101,6 +101,9 @@ public class SectionService extends ServiceImpl<SectionMapper, Section> {
         if (section.getDeleted() != null) {
             queryWrapper.eq(Section::getDeleted, section.getDeleted());
         }
+        if (section.getExcludeId() != null) {
+            queryWrapper.ne(Section::getId, section.getExcludeId());
+        }
         queryWrapper.orderByDesc(Section::getTopStatus).orderByAsc(Section::getSort);
         return super.baseMapper.selectPage(section.toPage(), queryWrapper);
     }
@@ -175,6 +178,9 @@ public class SectionService extends ServiceImpl<SectionMapper, Section> {
         }
         if (section.getDeleted() != null) {
             queryWrapper.eq(Section::getDeleted, section.getDeleted());
+        }
+        if (section.getExcludeId() != null) {
+            queryWrapper.ne(Section::getId, section.getExcludeId());
         }
         queryWrapper.last("limit 1");
         return super.getOne(queryWrapper);

@@ -1,10 +1,15 @@
 package cn.org.faster.cms.view.index;
 
+import cn.org.faster.cms.common.properties.CmsProperties;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author zhangbowen
@@ -13,13 +18,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping
 public class IndexController implements ErrorController {
+    @Autowired
+    private CmsProperties cmsProperties;
+
     @GetMapping
     public String index(Model model) {
+        Map<String, Object> params = new HashMap<>();
+        model.addAttribute(cmsProperties.getContextPrefix(), params);
         return "/index.ftl";
     }
 
     @GetMapping("/error")
-    public String error(Model model) {
+    public String error() {
         return "/error.ftl";
     }
 
@@ -27,4 +37,5 @@ public class IndexController implements ErrorController {
     public String getErrorPath() {
         return "/error";
     }
+
 }
