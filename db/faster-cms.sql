@@ -238,3 +238,6 @@ CREATE TABLE `tb_article` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='文章';
 
 
+INSERT INTO `sys_dict`(`id`, `name`, `type`, `dict_value`, `show_status`, `create_by`, `update_by`, `create_date`, `update_date`, `sort`, `remark`, `deleted`) VALUES (275236753718116352, 'site-url', 'site-url', 'https://test.com/', 1, 0, 0, '2020-03-28 10:25:34', '2020-03-28 10:25:34', 0, '站点地址', 0);
+INSERT INTO `sys_dict`(`id`, `name`, `type`, `dict_value`, `show_status`, `create_by`, `update_by`, `create_date`, `update_date`, `sort`, `remark`, `deleted`) VALUES (274955899032829952, '测试栏目模板1', 'section-template', 'testSection1.ftl', 1, 0, 0, '2020-03-27 15:49:33', '2020-03-27 15:49:33', 17, NULL, 0);
+INSERT INTO `sys_dict`(`id`, `name`, `type`, `dict_value`, `show_status`, `create_by`, `update_by`, `create_date`, `update_date`, `sort`, `remark`, `deleted`) VALUES (274955265504182272, '文章模板1', 'article-template', 'testArticle1.ftl', 1, 0, 0, '2020-03-27 15:47:02', '2020-03-27 15:47:02', 12, NULL, 0);
