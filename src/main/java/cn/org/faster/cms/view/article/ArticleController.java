@@ -47,6 +47,6 @@ public class ArticleController {
         }
         Map<String, Object> params = articleService.renderTemplate(article, section);
         model.addAttribute(cmsProperties.getContextPrefix(), params);
-        return section.getTemplatePath();
+        return section.getArticleTemplatePath();
     }
 }

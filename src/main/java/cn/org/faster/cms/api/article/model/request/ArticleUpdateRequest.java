@@ -1,9 +1,10 @@
 package cn.org.faster.cms.api.article.model.request;
 
-import lombok.Data;
 import cn.org.faster.framework.mybatis.entity.BaseEntity;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
-import java.time.LocalDateTime;
+
+import java.util.Date;
 
 /**
  * @author faster-builder
@@ -11,7 +12,7 @@ import java.time.LocalDateTime;
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class ArticleUpdateRequest extends BaseEntity{
+public class ArticleUpdateRequest extends BaseEntity {
     /**
      * 标题
      */
@@ -35,7 +36,7 @@ public class ArticleUpdateRequest extends BaseEntity{
     /**
      * 发布时间
      */
-    private LocalDateTime publishDate;
+    private Date publishDate;
     /**
      * 是否发布（0. 未发布 1.已发布）
      */

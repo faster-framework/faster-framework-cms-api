@@ -28,14 +28,21 @@ public class IndexController implements ErrorController {
         return "/index.ftl";
     }
 
-    @GetMapping("/error")
+    @GetMapping("/redirectError")
     public String error() {
+        return "redirect:/error";
+    }
+
+    @GetMapping("/error")
+    public String notFound(Model model) {
+        Map<String, Object> params = new HashMap<>();
+        model.addAttribute(cmsProperties.getContextPrefix(), params);
         return "/error.ftl";
     }
 
     @Override
     public String getErrorPath() {
-        return "/error";
+        return "/redirectError";
     }
 
 }

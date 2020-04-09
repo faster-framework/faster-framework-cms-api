@@ -14,10 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -209,18 +206,21 @@ public class ArticleService extends ServiceImpl<ArticleMapper, Article> {
 
     /**
      * 渲染模板
+     *
      * @param article 文章
      * @param section 栏目
      * @return 上下文变量
      */
     public Map<String, Object> renderTemplate(Article article, Section section) {
-        Map<String,Object> dataModel = new HashMap<>();
+        Map<String, Object> dataModel = new HashMap<>();
         dataModel.put("art", article);
         dataModel.put("ps", section);
         List<String> parentIdList = Arrays.stream(section.getParentIds().split(","))
                 .map(item -> item.replace("[", "").replace("]", ""))
                 .collect(Collectors.toList());
-        dataModel.put("pslist", sectionService.listByIds(parentIdList).add(section));
+        Collection<Section> collection = sectionService.listByIds(parentIdList);
+        collection.add(section);
+        dataModel.put("pslist", collection);
         return dataModel;
     }
 }

@@ -89,6 +89,7 @@ public class SectionStrategy extends BaseStrategy {
                 generatePageSection(parentList, section, template);
                 break;
         }
+        generateArticle(parentList, section);
     }
     /**
      * 生成普通栏目页面
@@ -154,7 +155,6 @@ public class SectionStrategy extends BaseStrategy {
                 fileName = Strings.formatIfArgs(super.cmsProperties.getSiteDir() + S_PAGE_NORMAL_FORMATTER, section.getCode());
                 CmsUtils.generateHtml(template, fileName, context);
             }
-            generateArticle(parentList, section);
         }
     }
 

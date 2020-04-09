@@ -18,3 +18,9 @@ app:
       "[/admin/media/**]": anon
       "[/admin/captcha/**]": anon
       "[/admin/**]": jwt
+mybatis-plus:
+  configuration:
+    local-cache-scope: statement
+server:
+  error:
+    path: /redirectError

@@ -1,10 +1,11 @@
 package cn.org.faster.cms.admin.article.entity;
 
 import cn.org.faster.framework.mybatis.entity.BaseEntity;
-import lombok.Data;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
-import java.time.LocalDateTime;
+
+import java.util.Date;
 
 /**
  * @author faster-builder
@@ -13,7 +14,7 @@ import java.time.LocalDateTime;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @TableName("tb_article")
-public class Article extends BaseEntity{
+public class Article extends BaseEntity {
     /**
      * 标题
      */
@@ -37,7 +38,7 @@ public class Article extends BaseEntity{
     /**
      * 发布时间
      */
-    private LocalDateTime publishDate;
+    private Date publishDate;
     /**
      * 是否发布（0. 未发布 1.已发布）
      */

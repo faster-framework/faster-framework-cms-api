@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -240,7 +241,7 @@ public class ArticleService extends ServiceImpl<ArticleMapper, Article> {
         article.preInsert();
         //如果为已发布，设置发布时间
         if (Integer.valueOf(1).equals(article.getPublishStatus())) {
-            article.setPublishDate(LocalDateTime.now());
+            article.setPublishDate(new Date());
         }
         if (!StringUtils.isEmpty(article.getCode())) {
             if (existCode(article.getCode())) {
@@ -261,7 +262,7 @@ public class ArticleService extends ServiceImpl<ArticleMapper, Article> {
         article.preUpdate();
         //如果为已发布，设置发布时间
         if (Integer.valueOf(1).equals(article.getPublishStatus())) {
-            article.setPublishDate(LocalDateTime.now());
+            article.setPublishDate(new Date());
         }
         //判断要更新的code是否已经存在
         if (!StringUtils.isEmpty(article.getCode())) {

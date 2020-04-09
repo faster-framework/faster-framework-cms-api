@@ -7,6 +7,8 @@ import freemarker.template.TemplateException;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author zhangbowen
@@ -17,6 +19,8 @@ public class IndexStrategy extends BaseStrategy {
     @Override
     public void execute() throws IOException, TemplateException {
         Template template = configuration.getTemplate("index.ftl");
-        CmsUtils.generateHtml(template, super.cmsProperties.getSiteDir() + "/index.html", null);
+        Map<String, Object> params = new HashMap<>();
+        params.put(super.cmsProperties.getContextPrefix(), new HashMap<>());
+        CmsUtils.generateHtml(template, super.cmsProperties.getSiteDir() + "/index.html", params);
     }
 }

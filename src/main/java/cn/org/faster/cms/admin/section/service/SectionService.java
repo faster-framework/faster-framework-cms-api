@@ -129,6 +129,12 @@ public class SectionService extends ServiceImpl<SectionMapper, Section> {
             if (existParent == null) {
                 return false;
             }
+            if (StringUtils.isEmpty(section.getTemplatePath())) {
+                section.setTemplatePath(existParent.getTemplatePath());
+            }
+            if (StringUtils.isEmpty(section.getArticleTemplatePath())) {
+                section.setArticleTemplatePath(existParent.getArticleTemplatePath());
+            }
             section.setParentIds(existParent.getParentIds().concat(",").concat("[").concat(existParent.getId().toString()).concat("]"));
         } else {
             section.setParentIds("[0]");
