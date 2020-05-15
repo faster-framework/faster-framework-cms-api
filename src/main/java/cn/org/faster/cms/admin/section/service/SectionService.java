@@ -6,6 +6,7 @@ import cn.org.faster.framework.core.entity.TreeNode;
 import cn.org.faster.framework.core.utils.tree.TreeUtils;
 import cn.org.faster.framework.web.exception.model.BasicErrorCode;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +29,7 @@ public class SectionService extends ServiceImpl<SectionMapper, Section> {
      */
     public List<TreeNode> treeList() {
         List<Section> list = super.baseMapper.selectList(
-                new LambdaQueryWrapper<Section>().orderByAsc(Section::getParentIds, Section::getSort)
+                new LambdaQueryWrapper<Section>().select(Section.class, item -> !item.getProperty().equals("content")).orderByAsc(Section::getParentIds, Section::getSort)
         );
         return TreeUtils.convertToTree(list);
     }

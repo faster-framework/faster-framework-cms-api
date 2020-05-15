@@ -1,6 +1,9 @@
 package cn.org.faster.cms.admin.section.controller;
 
 import java.util.List;
+
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -41,7 +44,7 @@ public class SectionController {
     @GetMapping
     @RequiresPermissions("section:list")
     public ResponseEntity list() {
-        return ResponseEntity.ok(sectionService.list());
+        return ResponseEntity.ok(sectionService.list(new LambdaQueryWrapper<Section>().select(Section.class, item -> !item.getProperty().equals("content"))));
     }
 
     /**

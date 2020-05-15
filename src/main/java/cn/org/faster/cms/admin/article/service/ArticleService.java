@@ -6,6 +6,7 @@ import cn.org.faster.cms.admin.section.entity.Section;
 import cn.org.faster.framework.web.exception.model.BasicErrorCode;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.metadata.TableFieldInfo;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,7 @@ import org.springframework.util.StringUtils;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
+import java.util.function.Predicate;
 
 /**
  * @author faster-builder
@@ -147,6 +149,8 @@ public class ArticleService extends ServiceImpl<ArticleMapper, Article> {
             queryWrapper.eq(Article::getDeleted, article.getDeleted());
         }
         queryWrapper.orderByDesc(Article::getTopStatus).orderByAsc(Article::getSort).orderByDesc(Article::getPublishDate);
+
+        queryWrapper.select(Article.class, tableFieldInfo -> !tableFieldInfo.getProperty().equals("content"));
         return super.baseMapper.selectPage(article.toPage(), queryWrapper);
     }
 
