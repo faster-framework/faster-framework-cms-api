@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: faster-cms
+  profiles:
+    include:
+      - web
+      - mybatis
+  freemarker:
+    settings:
+      classic_compatible: true
+      number_format: 0.##
+    suffix: ""
+app:
+  group: faster-cms
+  shiro:
+    filter-chain-definition-map:
+      "[/admin/login]": anon
+      "[/admin/media/**]": anon
+      "[/admin/captcha/**]": anon
+      "[/admin/**]": jwt
+mybatis-plus:
+  configuration:
+    local-cache-scope: statement
+server:
+  error:
+    path: /redirectError

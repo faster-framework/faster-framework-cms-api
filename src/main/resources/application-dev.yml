@@ -1,0 +1,14 @@
+app:
+  datasource:
+    name: faster-cms
+    host:
+    port:
+    username:
+    password:
+  upload:
+    local:
+      file-dir: /data/upload/faster-cms
+      url-prefix: http://127.0.0.1:8080
+logging:
+  level:
+    cn.org.faster.cms: DEBUG
