@@ -1,14 +1,13 @@
+spring:
+  freemarker:
+    cache: false
+
 app:
-  datasource:
-    name: faster-cms
-    host:
-    port:
-    username:
-    password:
-  upload:
-    local:
-      file-dir: /data/upload/faster-cms
-      url-prefix: http://127.0.0.1:8080
+  cms:
+    site-dir: ${CMS_SITE_DIR:target/site}
+
 logging:
   level:
     cn.org.faster.cms: DEBUG
+    org.springframework.web: INFO
+    org.mybatis: INFO

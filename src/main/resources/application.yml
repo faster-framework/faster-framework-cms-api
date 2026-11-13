@@ -1,26 +1,65 @@
 spring:
   application:
     name: faster-cms
-  profiles:
-    include:
-      - web
-      - mybatis
+  datasource:
+    url: jdbc:mysql://${DB_HOST:127.0.0.1}:${DB_PORT:3306}/${DB_NAME:faster-cms}?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&useSSL=false&rewriteBatchedStatements=true
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+      connection-timeout: 3000
   freemarker:
+    suffix: .ftl
     settings:
       classic_compatible: true
-      number_format: 0.##
-    suffix: ""
-app:
-  group: faster-cms
-  shiro:
-    filter-chain-definition-map:
-      "[/admin/login]": anon
-      "[/admin/media/**]": anon
-      "[/admin/captcha/**]": anon
-      "[/admin/**]": jwt
+      number_format: "0.##"
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 12MB
+  jackson:
+    default-property-inclusion: non_null
+
+server:
+  port: ${SERVER_PORT:8080}
+  error:
+    include-message: always
+    include-stacktrace: never
+
 mybatis-plus:
   configuration:
-    local-cache-scope: statement
-server:
-  error:
-    path: /redirectError
+    map-underscore-to-camel-case: true
+  global-config:
+    banner: false
+    db-config:
+      id-type: assign_id
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+app:
+  cms:
+    site-dir: ${CMS_SITE_DIR:site}
+    page-size: ${CMS_PAGE_SIZE:20}
+    context-prefix: cms
+    list-max: 500
+  jwt:
+    secret: ${JWT_SECRET:faster-cms-dev-secret-change-me-32bytes!!}
+    ttl: ${JWT_TTL:PT2H}
+    issuer: faster-cms
+  captcha:
+    enabled: ${CAPTCHA_ENABLED:true}
+    ttl: PT2M
+    length: 4
+  upload:
+    dir: ${UPLOAD_DIR:data/upload}
+    url-prefix: /media
+    max-size: 10MB
+    allowed-types: png,jpg,jpeg,gif,webp,pdf,zip
+
+logging:
+  level:
+    root: INFO
+    cn.org.faster.cms: INFO

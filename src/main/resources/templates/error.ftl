@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>404页面</title>
+    <title>页面不存在</title>
 </head>
 <body>
-<div class="text" style="text-align: center;">
-    404页面
-</div>
+<main>
+    <h1>404</h1>
+    <p>您访问的页面不存在或已被移除。</p>
+    <p><a href="/">返回首页</a></p>
+</main>
 </body>
 </html>

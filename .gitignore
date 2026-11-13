@@ -10,3 +10,10 @@ out/*
 .gradle/*
 build/*
 target/*
+
+# runtime output
+site/
+data/
+logs/
+*.log
+.DS_Store

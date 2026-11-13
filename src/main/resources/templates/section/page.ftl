@@ -1,106 +1,33 @@
-<html>
-
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>${cms.s.name?html} - 第 ${cms.current} 页</title>
+</head>
 <body>
+<nav>
+    <a href="/">首页</a>
+    <#list cms.plist as item>
+        / <a href="/s/${item.code}/">${item.name?html}</a>
+    </#list>
+</nav>
+<main>
+    <h1>${cms.s.name?html}</h1>
+    <#if cms.s.description??><p>${cms.s.description?html}</p></#if>
 
-<p>
-    模板上下文测试：
-</p>
-<p>
-    当前页栏目名称：${cms.s.name}
-</p>
-<p>
-    父栏目名称：${cms.p.name!'不存在父级'}
-</p>
-<p>
-    父栏目列表名称：<#list cms.plist as item>${item.name}<br/></#list>
-</p>
-<p>
-    当前页面第几页：${cms.current}
-</p>
-当前页面展示条数：${cms.size}
-<p>
-    总页数：${cms.pages}
-</p>
-总记录数：${cms.total}
-<p>
-    是否存在上一页：${cms.hasp}
-</p>
-<p>
-    是否存在下一页：${cms.hasn}
-</p>
-<p>
-    下一页页数：${cms.nnum}
-</p>
-<p>
-    上一页页数：${cms.pnum}
-</p>
+    <@article page=true sid=cms.s.id size=cms.size current=cms.current>
+        <ul>
+            <#list data as item>
+                <li><a href="/a/${item.id}/">${item.title?html}</a></li>
+            </#list>
+        </ul>
+    </@article>
 
-
-<p>
-    栏目标签分页测试：
-</p>
-<@section page=true pid='${cms.s.id}' size=1>
-    <p>
-        <#list data as item>${item.name}<br/></#list>
-    </p>
-</@section>
-
-<p>
-    栏目标签列表测试：
-</p>
-<@section list=true pid='${cms.s.id}'>
-    <p>
-        <#list data as item>${item.name}<br/></#list>
-    </p>
-</@section>
-
-<p>
-    栏目标签单条测试：
-</p>
-<@section>
-    <p>
-        ${data.name}
-    </p>
-</@section>
-
-<p>
-    文章分页测试：
-</p>
-<@article page=true>
-    <p>
-        <#list data as item>${item.title}<br/></#list>
-    </p>
-</@article>
-
-<p>
-    文章列表测试：
-</p>
-<@article list=true show=false scode='${cms.s.code}'>
-    <p>
-        <#list data as item>${item.title}<br/></#list>
-    </p>
-</@article>
-
-<p>
-    文章单条测试：
-</p>
-<@article top=true>
-    <p>
-        ${data.title}
-    </p>
-</@article>
-
-<p>字典列表测试：</p>
-<@dict list=true>
-    <#list data as item>${item.dictValue}<br/></#list>
-</@dict>
-<p>字典分页测试：</p>
-<@dict page=true size=1>
-    <#list data as item>${item.dictValue}<br/></#list>
-</@dict>
-<p>字典单条测试：</p>
-<@dict name='a' type='b' >
-    ${data.dictValue}
-</@dict>
+    <nav>
+        <#if cms.hasp><a href="/s/${cms.s.code}/${cms.pnum}/">上一页</a></#if>
+        <span>第 ${cms.current} / ${cms.pages} 页（共 ${cms.total} 条）</span>
+        <#if cms.hasn><a href="/s/${cms.s.code}/${cms.nnum}/">下一页</a></#if>
+    </nav>
+</main>
 </body>
 </html>
